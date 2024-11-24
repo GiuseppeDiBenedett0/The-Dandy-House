@@ -4,10 +4,10 @@ const colors = {
     primary: "#FFFFFF",
     secondary: "#cacaca",
     hover: {
-      text: "#C51400",
+      hoverText: "#C51400",
     },
     active: {
-      text: "#C51400",
+      activeText: "#C51400",
     },
   },
   status: {
@@ -19,24 +19,24 @@ const colors = {
     background: "#770c00",
     text: "#cacaca",
     hover: {
-      background: "#911102",
-      text: "#FFFFFF",
+      hoverBackground: "#f13932",
+      hoverText: "#FFFFFF",
     },
     active: {
-      background: "#911102",
-      text: "#FFFFFF",
+      activeBackground: "#f13932",
+      activeText: "#FFFFFF",
     },
   },
   secondaryButtons: {
-    background: "#eeeeee",
+    activeBackground: "#eeeeee",
     text: "#000000",
     hover: {
-      background: "#000000",
-      text: "#FFFFFF",
+      hoverBackground: "#000000",
+      hoverText: "#FFFFFF",
     },
     active: {
       background: "#000000",
-      text: "#FFFFFF",
+      activeText: "#FFFFFF",
     },
   },
 };
