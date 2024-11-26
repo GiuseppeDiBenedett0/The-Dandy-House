@@ -35,13 +35,13 @@ const CustomBrand = styled(Navbar.Brand)`
   font-size: 2rem;
   font-family: ${({ theme }) => theme.fonts.notoSans};
   margin-right: 24px;
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: ${({ theme }) => theme.textColors.primary};
 
   &:hover,
   &:active,
   &:focus,
   &:visited {
-    color: ${({ theme }) => theme.colors.text.primary};
+    color: ${({ theme }) => theme.textColors.primary};
   }
 
   @media (max-width: 490px) {
@@ -63,7 +63,7 @@ const CustomBrandImg = styled.img`
 `;
 
 const CustomNav = styled(Nav)`
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: ${({ theme }) => theme.textColors.primary};
 `;
 
 function CustomNavbar() {

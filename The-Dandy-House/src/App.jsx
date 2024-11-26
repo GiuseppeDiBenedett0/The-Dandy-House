@@ -1,14 +1,12 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import styled, { createGlobalStyle } from "styled-components";
 import CustomNavbar from "./components/navbar/navbar";
-import MainContent from "./components/main";
+import HomeContent from "./components/home-page/home-content";
 import ArrowUp from "./components/navbar/arrow-up";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: ${({ theme }) => theme.colors.background};
+    background-color: ${({ theme }) => theme.backgroundColor.background};
     margin: 0;
     padding: 0;
     width: 100%;
@@ -39,7 +37,7 @@ function App() {
       <GlobalStyle />
       <CustomNavbar />
       <ContentWrapper>
-        <MainContent />
+        <HomeContent />
       </ContentWrapper>
       <ArrowUp/>
     </>

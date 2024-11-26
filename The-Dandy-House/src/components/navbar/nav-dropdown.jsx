@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useEffect } from "react";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
@@ -37,14 +36,14 @@ const CustomNavDropdown = styled(NavDropdown)`
     &:active,
     &:focus,
     &:visited {
-      color: ${({ theme }) => theme.colors.text.primary};
+      color: ${({ theme }) => theme.textColors.primary};
       background-color: transparent;
     }
 
     &:hover {
-      color: ${({ theme }) => theme.colors.text.primary};
+      color: ${({ theme }) => theme.textColors.primary};
       background-color: ${({ theme }) =>
-        theme.colors.primaryButtons.hover.hoverBackground};
+        theme.primaryButtons.hover.hoverBackground};
     }
 
     @media (max-width: 991px) {
@@ -56,14 +55,14 @@ const CustomNavDropdown = styled(NavDropdown)`
   .nav-link {
     display: flex;
     align-items: center;
-    color: ${({ theme }) => theme.colors.text.primary};
+    color: ${({ theme }) => theme.textColors.primary};
     height: 70px;
     padding: 0;
   }
 
   .nav-link.active,
   .nav-link.show {
-    color: ${({ theme }) => theme.colors.text.hover.hoverText} !important;
+    color: ${({ theme }) => theme.textColors.hover.hoverText} !important;
     background-color: #000000 !important;
   }
 
@@ -76,7 +75,7 @@ const CustomNavDropdown = styled(NavDropdown)`
 
 const CustomDropdownItem = styled(NavDropdown.Item)`
   background-color: transparent;
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: ${({ theme }) => theme.textColors.primary};
   margin: 16px 0 16px 0;
 `;
 
