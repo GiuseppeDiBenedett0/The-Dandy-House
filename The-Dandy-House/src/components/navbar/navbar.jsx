@@ -13,6 +13,7 @@ const StyledNavbar = styled(Navbar)`
   justify-content: center;
   padding: 0;
   position: fixed;
+  z-index: 10;
 
   @media (max-width: 991px) {
     justify-content: space-around;
