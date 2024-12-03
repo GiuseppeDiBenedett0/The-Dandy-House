@@ -7,10 +7,16 @@ const Cardbody = styled.div`
   justify-content: ${({ $justifyContent }) => $justifyContent};
   align-items: ${({ $cardBodyItems }) => $cardBodyItems};
   flex-direction: ${({ $flexDirection }) => $flexDirection};
-  max-height: 647px;
+  height: 100%;
   width: 100%;
   background: ${({ $background }) => $background};
-  margin-top: ${({ $marginTop }) => $marginTop};
+  margin: ${({ $margin }) => $margin};
+
+  @media (max-width: ${({ $maxWidth }) => $maxWidth}) {
+    justify-content: ${({ $mediaContent }) => $mediaContent};
+    align-items: ${({ $mediaItems }) => $mediaItems};
+    flex-direction: ${({ $mediaDirection }) => $mediaDirection};
+  }
 `;
 
 const CardTextContent = styled.div`
@@ -25,18 +31,31 @@ const CardTextContent = styled.div`
   overflow-wrap: break-word;
   word-wrap: break-word;
   color: ${({ theme }) => theme.textColors.primary};
+
+  @media(max-width: 940px){
+    text-align: ${({ $mediaTextAlign }) => $mediaTextAlign};
+    align-items: ${({ $mediaCardTextItems }) => $mediaCardTextItems};
+  }
 `;
 
 const CardH2 = styled.h2`
   font-size: 2.5rem;
   font-family: ${({ theme }) => theme.fonts.oswald};
   margin-bottom: 10px;
+
+  @media(max-width: 445px){
+    font-size: 2rem;
+  }
 `;
 
 const CardP = styled.p`
   font-size: 1.3rem;
   font-family: ${({ theme }) => theme.fonts.oswald};
   margin: 24px 0;
+
+  @media(max-width: 445px){
+    font-size: 1rem;
+  }
 `;
 
 const CardButton = styled.button`
@@ -45,12 +64,21 @@ const CardButton = styled.button`
   border-radius: 25px;
   margin: 16px 0;
   width: 112px;
+
+  @media(max-width: 445px){
+    font-size: 0.9rem;
+    width: 90px;
+  }
 `;
 
 const CardImgContent = styled(motion.img)`
-  width: ${({ $width }) => $width || "300px"};
-  height: ${({ $height }) => $height || "317px"};
+  width: ${({ $width }) => $width};
+  height: ${({ $height }) => $height};
   margin: 8px 0;
+
+  @media (max-width: ${({ $imageMaxWidth }) => $imageMaxWidth}) {
+    width: ${({ $imageWidth }) => $imageWidth};
+  }
 `;
 
 const CardsComponent = forwardRef(
@@ -65,11 +93,19 @@ const CardsComponent = forwardRef(
       $cardBodyItems,
       $flexDirection,
       $background,
-      $marginTop,
+      $margin,
+      $maxWidth,
+      $mediaContent,
+      $mediaItems,
+      $mediaDirection,
       $cardTextItems,
       $textAlign,
+      $mediaTextAlign,
+      $mediaCardTextItems,
       $width,
       $height,
+      $imageMaxWidth,
+      $imageWidth,
       $firstCard,
     },
     ref
@@ -85,12 +121,18 @@ const CardsComponent = forwardRef(
         $justifyContent={$justifyContent}
         $cardBodyItems={$cardBodyItems}
         $flexDirection={$flexDirection}
-        $marginTop={$marginTop}
+        $margin={$margin}
         $background={$background}
+        $maxWidth={$maxWidth}
+        $mediaContent={$mediaContent}
+        $mediaItems={$mediaItems}
+        $mediaDirection={$mediaDirection}
       >
         <CardTextContent
           $cardTextItems={$cardTextItems}
           $textAlign={$textAlign}
+          $mediaTextAlign={$mediaTextAlign}
+          $mediaCardTextItems={$mediaCardTextItems}
         >
           <CardH2>{title}</CardH2>
           <CardP>{paragraph}</CardP>
@@ -101,6 +143,8 @@ const CardsComponent = forwardRef(
           alt={alt}
           $width={$width}
           $height={$height}
+          $imageMaxWidth={$imageMaxWidth}
+          $imageWidth={$imageWidth}
           initial={$firstCard && "hidden"}
           animate={$firstCard && "visible"}
           transition={$firstCard && { duration: 1.5, ease: "easeIn" }}

@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import CustomNavbar from "./components/navbar/navbar";
 import HomeContent from "./components/home-page/home-content";
 import ArrowUp from "./components/navbar/arrow-up";
+import Footer from "./components/footer";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -30,7 +31,6 @@ const ContentWrapper = styled.div`
 `;
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -39,6 +39,7 @@ function App() {
       <ContentWrapper>
         <HomeContent />
       </ContentWrapper>
+      <Footer/>
       <ArrowUp/>
     </>
   );
