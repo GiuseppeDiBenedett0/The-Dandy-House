@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import BrandImg from "./navbar/brand";
 import BatImg from "../assets/flying-bat-svgrepo-com.svg";
 import XIcon from "../assets/x-social-media-logo-icon.svg";
 import FacebookIcon from "../assets/facebook-square-black-icon.svg";
@@ -62,14 +63,6 @@ const BrandWrapper = styled.div`
 const BrandName = styled.h2`
   text-transform: uppercase;
   font-size: 2rem;
-`;
-
-const BrandImg = styled.img`
-  width: 43px;
-  height: 43px;
-  position: relative;
-  bottom: 4px;
-  left: 4px;
 `;
 
 const BrandP = styled.p`
@@ -153,7 +146,7 @@ const FooterEnd = styled.div`
   justify-content: space-between;
   padding: 8px 0 0 12px;
 
-  @media (max-width: 1155px) {
+  @media (max-width: 1290px) {
     flex-direction: column;
     justify-content: flex-start;
   }
@@ -257,7 +250,8 @@ function Footer() {
           </FooterUpperSection>
           <FooterEnd>
             <FooterCredits>
-              Copyright © 2024 The Dandy Step. All rights are not reserved.{" "}
+              Copyright © 2024 The Dandy Step. This website is create by
+              Giuseppe Di Benedetto.{" "}
               <CreditsLink href="/">Terms of Use</CreditsLink>{" "}
               <CreditsLink href="/">Privacy Policy</CreditsLink>{" "}
               <CreditsLink href="/">Cookie Preferences</CreditsLink>

@@ -32,7 +32,7 @@ const CardTextContent = styled.div`
   word-wrap: break-word;
   color: ${({ theme }) => theme.textColors.primary};
 
-  @media(max-width: 940px){
+  @media (max-width: 940px) {
     text-align: ${({ $mediaTextAlign }) => $mediaTextAlign};
     align-items: ${({ $mediaCardTextItems }) => $mediaCardTextItems};
   }
@@ -42,8 +42,9 @@ const CardH2 = styled.h2`
   font-size: 2.5rem;
   font-family: ${({ theme }) => theme.fonts.oswald};
   margin-bottom: 10px;
+  color: ${({ $cardTitleColor }) => $cardTitleColor || "#FFFFFF"};
 
-  @media(max-width: 445px){
+  @media (max-width: 445px) {
     font-size: 2rem;
   }
 `;
@@ -52,8 +53,9 @@ const CardP = styled.p`
   font-size: 1.3rem;
   font-family: ${({ theme }) => theme.fonts.oswald};
   margin: 24px 0;
+  color: ${({ $cardPColor }) => $cardPColor || "#FFFFFF"};
 
-  @media(max-width: 445px){
+  @media (max-width: 445px) {
     font-size: 1rem;
   }
 `;
@@ -64,8 +66,19 @@ const CardButton = styled.button`
   border-radius: 25px;
   margin: 16px 0;
   width: 112px;
+  background-color: ${({ $buttonBackgroundColor }) =>
+    $buttonBackgroundColor || "#FFFFFF"};
+  color: ${({ $buttonTextColor }) => $buttonTextColor || "#000000"};
 
-  @media(max-width: 445px){
+  &:active,
+  &:focus,
+  &:visited,
+  &:hover {
+    border-color: transparent;
+    background-color: ${({ $buttonHover }) => $buttonHover || "#bfbfbf"};
+  }
+
+  @media (max-width: 445px) {
     font-size: 0.9rem;
     width: 90px;
   }
@@ -102,6 +115,11 @@ const CardsComponent = forwardRef(
       $textAlign,
       $mediaTextAlign,
       $mediaCardTextItems,
+      $cardTitleColor,
+      $cardPColor,
+      $buttonBackgroundColor,
+      $buttonTextColor,
+      $buttonHover,
       $width,
       $height,
       $imageMaxWidth,
@@ -110,8 +128,8 @@ const CardsComponent = forwardRef(
     },
     ref
   ) => {
-    const slayerImgAnimation = {
-      hidden: { opacity: 0, x: "40%" },
+    const firstCardAnimation = {
+      hidden: { opacity: 0, x: "15%" },
       visible: { opacity: 1, x: 0 },
     };
 
@@ -134,9 +152,15 @@ const CardsComponent = forwardRef(
           $mediaTextAlign={$mediaTextAlign}
           $mediaCardTextItems={$mediaCardTextItems}
         >
-          <CardH2>{title}</CardH2>
-          <CardP>{paragraph}</CardP>
-          <CardButton>{button}</CardButton>
+          <CardH2 $cardTitleColor={$cardTitleColor}>{title}</CardH2>
+          <CardP $cardPColor={$cardPColor}>{paragraph}</CardP>
+          <CardButton
+            $buttonBackgroundColor={$buttonBackgroundColor}
+            $buttonTextColor={$buttonTextColor}
+            $buttonHover={$buttonHover}
+          >
+            {button}
+          </CardButton>
         </CardTextContent>
         <CardImgContent
           src={image}
@@ -148,7 +172,7 @@ const CardsComponent = forwardRef(
           initial={$firstCard && "hidden"}
           animate={$firstCard && "visible"}
           transition={$firstCard && { duration: 1.5, ease: "easeIn" }}
-          variants={$firstCard && slayerImgAnimation}
+          variants={$firstCard && firstCardAnimation}
         />
       </Cardbody>
     );

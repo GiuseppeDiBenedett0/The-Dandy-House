@@ -67,6 +67,11 @@ function HomeContent() {
                 $textAlign={data.textAlign}
                 $mediaTextAlign={data.mediatextAlign}
                 $mediaCardTextItems={data.mediaCardTextItems}
+                $cardTitleColor={data.cardTitleColor}
+                $cardPColor={data.cardPColor}
+                $buttonBackgroundColor={data.buttonBackColor}
+                $buttonTextColor={data.buttonColor}
+                $buttonHover={data.butonHoverColor}
                 $width={data.imgWidth}
                 $height={data.imgHeight}
                 $imageMaxWidth={data.imageMaxWidth}

@@ -2,8 +2,10 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import styled from "styled-components";
+import BrandImg from "./brand";
 import CustomDropdown from "./nav-dropdown";
 import brandImage from "../../assets/flying-bat-svgrepo-com.svg";
+import menuIcon from "../../assets/menu_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const StyledNavbar = styled(Navbar)`
@@ -50,55 +52,54 @@ const CustomBrand = styled(Navbar.Brand)`
   }
 `;
 
-const CustomBrandImg = styled.img`
-  width: 43px;
-  height: 43px;
-  position: relative;
-  bottom: 4px;
-  left: 4px;
-
-  @media (max-width: 490px) {
-    width: 30px;
-    height: 30px;
-  }
-`;
-
 const CustomNav = styled(Nav)`
   color: ${({ theme }) => theme.textColors.primary};
+`;
+
+const MenuToggle = styled(Navbar.Toggle)`
+  color: transparent;
+  border-color: transparent;
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:visited {
+    border-color: transparent;
+  }
 `;
 
 function CustomNavbar() {
   return (
     <>
-    <StyledNavbar expand="lg">
-      <CustomContainer>
-        <CustomBrand href="#home">
-          The Dandy Step
-          <CustomBrandImg src={brandImage} />
-        </CustomBrand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <CustomNav className="me-auto">
-            <CustomDropdown
-              dropdownTitle={"Lo strano"}
-              columns={["Ciao", "Stefi", "Sono", "Papà"]}
-            />
-            <CustomDropdown
-              dropdownTitle={"Caso"}
-              columns={["Ciao", "Stefi"]}
-            />
-            <CustomDropdown
-              dropdownTitle={"Dei giochi"}
-              columns={["Ciao", "Stefi", "Sono"]}
-            />
-            <CustomDropdown
-              dropdownTitle={"Olimpici"}
-              columns={["Ciao", "Stefi", "Sono", "Papà"]}
-            />
-          </CustomNav>
-        </Navbar.Collapse>
-      </CustomContainer>
-    </StyledNavbar>
+      <StyledNavbar expand="lg" variant="dark">
+        <CustomContainer>
+          <CustomBrand href="#home">
+            The Dandy Step
+            <BrandImg src={brandImage} />
+          </CustomBrand>
+          <MenuToggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <CustomNav className="me-auto">
+              <CustomDropdown
+                dropdownTitle={"Lo strano"}
+                columns={["Ciao", "Stefi", "Sono", "Papà"]}
+              />
+              <CustomDropdown
+                dropdownTitle={"Caso"}
+                columns={["Ciao", "Stefi"]}
+              />
+              <CustomDropdown
+                dropdownTitle={"Dei giochi"}
+                columns={["Ciao", "Stefi", "Sono"]}
+              />
+              <CustomDropdown
+                dropdownTitle={"Olimpici"}
+                columns={["Ciao", "Stefi", "Sono", "Papà"]}
+              />
+            </CustomNav>
+          </Navbar.Collapse>
+        </CustomContainer>
+      </StyledNavbar>
     </>
   );
 }
