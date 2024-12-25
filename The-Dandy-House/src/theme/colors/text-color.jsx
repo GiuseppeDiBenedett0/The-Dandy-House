@@ -1,6 +1,6 @@
 const textColors = {
   primary: "#FFFFFF",
-  secondary: "#000000",
+  secondary: "#141414",
   hover: {
     hoverText: "#C51400",
   },

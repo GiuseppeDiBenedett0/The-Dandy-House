@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import CustomNavbar from "./components/navbar/navbar";
 import HomeContent from "./components/home-page/home-content";
+import Introduction from "./components/programs-page/introduction";
 import ArrowUp from "./components/navbar/arrow-up";
 import Footer from "./components/footer";
+import ProgramsPage from "./components/programs-page/programs-pages";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -31,16 +33,21 @@ const ContentWrapper = styled.div`
 `;
 
 function App() {
-
   return (
     <>
-      <GlobalStyle />
-      <CustomNavbar />
-      <ContentWrapper>
-        <HomeContent />
-      </ContentWrapper>
-      <Footer/>
-      <ArrowUp/>
+      <Router>
+        <GlobalStyle />
+        <CustomNavbar />
+        <ContentWrapper>
+          <Routes>
+            <Route path="/" element={<HomeContent/>}/>
+            <Route path="/programs/introduction" element={<Introduction/>}/>
+            <Route path="/programs/:section" element={<ProgramsPage/>}/>
+          </Routes>
+        </ContentWrapper>
+        <Footer />
+        <ArrowUp />
+      </Router>
     </>
   );
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
@@ -27,7 +28,7 @@ const CustomNavDropdown = styled(NavDropdown)`
     margin: 0;
     padding: 0;
     height: 50px;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
 
     .border-bottom {
       border-bottom: 1px solid #ffffff;
@@ -73,10 +74,21 @@ const CustomNavDropdown = styled(NavDropdown)`
   }
 `;
 
-const CustomDropdownItem = styled(NavDropdown.Item)`
+const CustomDropdownItem = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
   background-color: transparent;
   color: ${({ theme }) => theme.textColors.primary};
-  margin: 16px 0 16px 0;
+  text-decoration: none;
+
+  &:hover {
+    color: ${({ theme }) => theme.primaryButtons.hover.hoverText};
+    background-color: ${({ theme }) =>
+      theme.primaryButtons.hover.hoverBackground};
+  }
 `;
 
 const MotionDropdownMenu = styled(motion.div)`
@@ -123,7 +135,7 @@ function CustomDropdown({ dropdownTitle, columns = [] }) {
               >
                 {columns.map((column, index) => (
                   <CustomDropdownItem
-                    href={`#action/${index + 1}`}
+                    to={`/programs/${column.toLowerCase()}`}
                     key={index}
                     className={
                       index < columns.length - 1 ? "border-bottom" : ""

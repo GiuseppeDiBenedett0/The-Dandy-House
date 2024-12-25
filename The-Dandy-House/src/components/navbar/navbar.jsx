@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -5,7 +6,6 @@ import styled from "styled-components";
 import BrandImg from "./brand";
 import CustomDropdown from "./nav-dropdown";
 import brandImage from "../../assets/flying-bat-svgrepo-com.svg";
-import menuIcon from "../../assets/menu_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const StyledNavbar = styled(Navbar)`
@@ -33,8 +33,9 @@ const CustomContainer = styled(Container)`
   }
 `;
 
-const CustomBrand = styled(Navbar.Brand)`
+const CustomBrand = styled(Link)`
   text-transform: uppercase;
+  text-decoration: none;
   font-size: 2rem;
   font-family: ${({ theme }) => theme.fonts.notoSans};
   margin-right: 24px;
@@ -73,7 +74,7 @@ function CustomNavbar() {
     <>
       <StyledNavbar expand="lg" variant="dark">
         <CustomContainer>
-          <CustomBrand href="#home">
+          <CustomBrand to={`/`}>
             The Dandy Step
             <BrandImg src={brandImage} />
           </CustomBrand>
@@ -81,8 +82,8 @@ function CustomNavbar() {
           <Navbar.Collapse id="basic-navbar-nav">
             <CustomNav className="me-auto">
               <CustomDropdown
-                dropdownTitle={"Lo strano"}
-                columns={["Ciao", "Stefi", "Sono", "Papà"]}
+                dropdownTitle={"Programs"}
+                columns={["Introduction", "Begginers", "Avarage", "Expert"]}
               />
               <CustomDropdown
                 dropdownTitle={"Caso"}
