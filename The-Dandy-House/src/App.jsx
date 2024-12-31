@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
+import ScrollPage from "./components/general-components/animation/page-scroll";
 import CustomNavbar from "./components/navbar/navbar";
 import HomeContent from "./components/home-page/home-content";
 import Introduction from "./components/programs-page/introduction";
@@ -38,6 +39,7 @@ function App() {
       <Router>
         <GlobalStyle />
         <CustomNavbar />
+        <ScrollPage/>
         <ContentWrapper>
           <Routes>
             <Route path="/" element={<HomeContent/>}/>

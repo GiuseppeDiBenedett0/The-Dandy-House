@@ -1,67 +1,10 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { useState, useEffect } from "react";
-import Slayer from "../assets/196px-GGST_Slayer_jS.png";
-import HoverSong from "../assets/Ups and Downs [With Lyrics] (Slayer Theme) - Guilty Gear Strive OST.mp3";
+import { useLocation } from "react-router-dom";
+import animations from "../components/general-components/animation/tip-color-animation";
 
-const divColorChangeStart = keyframes`
-   0% {
-    background-color: transparent;
-  }
-   100% {
-    background-color: #6a0dad;
-  }
-`;
-
-const divColorChange = keyframes`
-  0% {
-    background-color: #6a0dad;
-  }
-  50% {
-    background-color: #8b2de4;
-  }
-  100% {
-    background-color: #6a0dad;
-  }
-`;
-
-const divColorChangeEnd = keyframes`
-  0% {
-    background-color: #6a0dad;
-  }
-  100% {
-    background-color: transparent;
-  }
-`;
-
-const titleColorChangeStart = keyframes`
-   0% {
-    color: #f13932;
-  }
-   100% {
-    color: #f13932;
-  }
-`;
-
-const titleColorChange = keyframes`
-  0% {
-    color: #f13932;
-  }
-  50% {
-    color: #b10b05;
-  }
-  100% {
-    color: #f13932;
-  }
-`;
-
-const titleColorChangeEnd = keyframes`
-  0% {
-    color: #b10b05;
-  }
-  100% {
-    color: #f13932;
-  }
-`;
+const { backgroundColorAnimation, titleColorAnimation, hoverAnimations } =
+  animations;
 
 const Container = styled.div`
   display: flex;
@@ -72,23 +15,13 @@ const Container = styled.div`
   background-color: transparent;
   cursor: pointer;
 
-  &:hover {
-    animation: ${divColorChangeStart} 3s forwards,
-      ${divColorChange} 10s infinite 3s;
-  }
+  ${({ $backgroundDark, $backgroundLight }) =>
+    backgroundColorAnimation($backgroundDark, $backgroundLight)}
 
-  &:not(:hover) {
-    animation: ${divColorChangeEnd} 3s forwards;
-  }
+  ${({ $titleDark, $titleLight }) =>
+    titleColorAnimation($titleDark, $titleLight)}
 
-  &:hover h3 {
-    animation: ${titleColorChangeStart} 3s forwards,
-      ${titleColorChange} 10s infinite 3s;
-  }
-
-  &:not(:hover) h3 {
-    animation: ${titleColorChangeEnd} 3s forwards;
-  }
+  ${hoverAnimations}
 
   @media (max-width: 625px) {
     justify-content: baseline;
@@ -115,7 +48,7 @@ const SectionTitle = styled.h3`
   color: #f13932;
 
   @media (max-width: 770px) {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 `;
 
@@ -127,8 +60,9 @@ const SectionParagraph = styled.p`
   line-height: 1.7;
   margin-top: 30px;
 
-  @media (max-width: 770px) {
-    font-size: 1.3rem;
+  @media (max-width: 625px) {
+    font-size: 1rem;
+    margin-top: 16px;
   }
 `;
 
@@ -142,60 +76,88 @@ const Image = styled.img`
   }
 
   @media (max-width: 625px) {
-    margin: 40px 0 0 0;
+    margin: 16px 0 0 0;
   }
 `;
 
-function TipsSection() {
-  const [audio] = useState(() => new Audio(HoverSong));
+function TipsSection({
+  audio,
+  index,
+  title,
+  paragraph,
+  image,
+  imageAlt,
+  $backgroundDark,
+  $backgroundLight,
+  $titleDark,
+  $titleLight,
+}) {
+  const [audioElement, setAudioElement] = useState(null);
   const [isAudioEnable, setIsAudioEnable] = useState(false);
+  const location = useLocation();
 
   const enableAudio = () => {
-    if (!isAudioEnable) {
+    if (!isAudioEnable && audioElement) {
       setIsAudioEnable(true);
-      audio.play();
+      audioElement.play();
     }
   };
 
   const handleMouseEnter = () => {
-    if (isAudioEnable) {
-      audio.play();
+    if (isAudioEnable && audioElement) {
+      audioElement.play();
     }
   };
 
   const handleMouseLeave = () => {
-    if (isAudioEnable) {
-      audio.pause();
+    if (isAudioEnable && audioElement) {
+      audioElement.pause();
     }
   };
 
   useEffect(() => {
+    const newAudioElement = new Audio(audio);
+    setAudioElement(newAudioElement);
+
     const handleAudioEnd = () => {
-      audio.currentTime = 0;
-      audio.play();
+      newAudioElement.currentTime = 0;
+      newAudioElement.play();
     };
 
-    audio.addEventListener("ended", handleAudioEnd);
+    newAudioElement.addEventListener("ended", handleAudioEnd);
 
     return () => {
-      audio.removeEventListener("ended", handleAudioEnd);
+      newAudioElement.pause();
+      newAudioElement.currentTime = 0;
+      newAudioElement.removeEventListener("ended", handleAudioEnd);
     };
   }, [audio]);
+
+  useEffect(() => {
+    if (audioElement) {
+      audioElement.pause();
+      audioElement.currentTime = 0;
+      setIsAudioEnable(false);
+    }
+  }, [location.pathname, audioElement]);
 
   return (
     <>
       <Container
+        key={index}
         onClick={enableAudio}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        $backgroundDark={$backgroundDark}
+        $backgroundLight={$backgroundLight}
+        $titleDark={$titleDark}
+        $titleLight={$titleLight}
       >
         <TextContainer>
-          <SectionTitle>Slayer daily tip</SectionTitle>
-          <SectionParagraph>
-            Use Pilebunker to deafet your enemies and claim the victory.
-          </SectionParagraph>
+          <SectionTitle>{title}</SectionTitle>
+          <SectionParagraph>{paragraph}</SectionParagraph>
         </TextContainer>
-        <Image src={Slayer} alt="Slayer" />
+        <Image src={image} alt={imageAlt} />
       </Container>
     </>
   );

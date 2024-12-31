@@ -19,8 +19,9 @@ const ArrowHref = styled.a`
   background-color: ${({ theme }) => theme.primaryButtons.background};
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 
-  &:hover{
-    background-color:  ${({ theme }) => theme.primaryButtons.hover.hoverBackground};
+  &:hover {
+    background-color: ${({ theme }) =>
+      theme.primaryButtons.hover.hoverBackground};
   }
 
   @media (max-width: 600px) {
@@ -50,21 +51,29 @@ function ArrowUp() {
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
-    setIsVisible(scrollPosition > 300);
+    if (scrollPosition > 300 && !isVisible) {
+      setIsVisible(true);
+    } else if (scrollPosition <= 300 && isVisible) {
+      setIsVisible(false);
+    }
   };
 
   const handleClick = (e) => {
     e.preventDefault();
-    window.scrollTo({
+    if ("scrollBehavior" in document.documentElement.style) {
+      window.scrollTo({
         top: 0,
         behavior: "smooth",
-    });
+      });
+    } else {
+      window.scrollTo(0, 0);
+    }
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll, { passive: true });
     };
   }, []);
 
@@ -73,7 +82,6 @@ function ArrowUp() {
     visible: { opacity: 1, transform: "translateX(-50%) translateY(0)" },
     exit: { opacity: 0, transform: "translateX(-50%) translateY(50px)" },
   };
-  
 
   return (
     <>

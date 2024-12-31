@@ -83,7 +83,7 @@ function CustomNavbar() {
             <CustomNav className="me-auto">
               <CustomDropdown
                 dropdownTitle={"Programs"}
-                columns={["Introduction", "Begginers", "Avarage", "Expert"]}
+                columns={["Introduction", "Beginner", "Average", "Expert"]}
               />
               <CustomDropdown
                 dropdownTitle={"Caso"}
