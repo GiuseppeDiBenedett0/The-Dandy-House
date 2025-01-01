@@ -19,7 +19,11 @@ const CardGrid = styled.div`
   display: flex;
   flex-direction: column;
   margin: 60px 0 60px 0;
-  width: 100%;
+  width: 65%;
+
+  @media(max-width: 991px){
+    width: 100%;
+  };
 `;
 
 function Introduction() {
