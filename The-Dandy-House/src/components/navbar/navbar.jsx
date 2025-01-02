@@ -72,6 +72,11 @@ const HomeLink = styled(Link)`
     font-size: 1.2rem;
     margin: 21px 18px 20px 18px;
   }
+
+  @media (max-width: 991px) {
+    font-size: 1.2rem;
+    margin: 21px 18px 20px 8px;
+  }
 `;
 
 const CustomNav = styled(Nav)`
