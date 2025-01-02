@@ -64,7 +64,8 @@ function Introduction() {
                 $cardPColor={data.cardPColor}
                 $buttonBackgroundColor={data.buttonBackColor}
                 $buttonTextColor={data.buttonColor}
-                $buttonHover={data.butonHoverColor}
+                $buttonHover={data.buttonHoverColor}
+                buttonLink={data.link}
                 $width={data.imgWidth}
                 $height={data.imgHeight}
                 $imageMaxWidth={data.imageMaxWidth}

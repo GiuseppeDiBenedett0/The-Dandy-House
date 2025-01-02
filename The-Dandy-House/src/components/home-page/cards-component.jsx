@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import React, { forwardRef } from "react";
 import { motion } from "framer-motion";
 
@@ -61,8 +62,6 @@ const CardP = styled.p`
 `;
 
 const CardButton = styled.button`
-  font-size: 1.1rem;
-  font-family: ${({ theme }) => theme.fonts.oswald};
   border-radius: 25px;
   margin: 16px 0;
   width: 112px;
@@ -81,6 +80,23 @@ const CardButton = styled.button`
   @media (max-width: 445px) {
     font-size: 0.9rem;
     width: 90px;
+  }
+`;
+
+const CardLink = styled.a`
+  font-size: 1.1rem;
+  font-family: ${({ theme }) => theme.fonts.oswald};
+  text-decoration: none;
+
+  &:active,
+  &:focus,
+  &:visited,
+  &:hover {
+    color: ${({ $buttonTextColor }) => $buttonTextColor || "#000000"};
+  }
+
+  @media (max-width: 445px) {
+    font-size: 0.9rem;
   }
 `;
 
@@ -120,6 +136,7 @@ const CardsComponent = forwardRef(
       $buttonBackgroundColor,
       $buttonTextColor,
       $buttonHover,
+      buttonLink,
       $width,
       $height,
       $imageMaxWidth,
@@ -154,13 +171,15 @@ const CardsComponent = forwardRef(
         >
           <CardH2 $cardTitleColor={$cardTitleColor}>{title}</CardH2>
           <CardP $cardPColor={$cardPColor}>{paragraph}</CardP>
-          <CardButton
-            $buttonBackgroundColor={$buttonBackgroundColor}
-            $buttonTextColor={$buttonTextColor}
-            $buttonHover={$buttonHover}
-          >
-            {button}
-          </CardButton>
+          <CardLink href={buttonLink}>
+            <CardButton
+              $buttonBackgroundColor={$buttonBackgroundColor}
+              $buttonTextColor={$buttonTextColor}
+              $buttonHover={$buttonHover}
+            >
+              {button}
+            </CardButton>
+          </CardLink>
         </CardTextContent>
         <CardImgContent
           src={image}

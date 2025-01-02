@@ -36,7 +36,7 @@ const CustomContainer = styled(Container)`
 const CustomBrand = styled(Link)`
   text-transform: uppercase;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: ${({ theme }) => theme.fonts.notoSans};
   margin-right: 24px;
   color: ${({ theme }) => theme.textColors.primary};
@@ -50,6 +50,27 @@ const CustomBrand = styled(Link)`
 
   @media (max-width: 490px) {
     font-size: 1.3rem;
+  }
+`;
+
+const HomeLink = styled(Link)`
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-family: ${({ theme }) => theme.fonts.notoSans};
+  margin: 18px 18px 18px 18px;
+  color: ${({ theme }) => theme.textColors.primary};
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:visited {
+    color: ${({ theme }) => theme.textColors.primary};
+  }
+
+  @media (max-width: 1200px) {
+    font-size: 1.2rem;
+    margin: 21px 18px 20px 18px;
   }
 `;
 
@@ -74,13 +95,14 @@ function CustomNavbar() {
     <>
       <StyledNavbar expand="lg" variant="dark">
         <CustomContainer>
-          <CustomBrand to={`/`}>
+          <CustomBrand to={`/home`}>
             The Dandy Step
             <BrandImg src={brandImage} />
           </CustomBrand>
           <MenuToggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <CustomNav className="me-auto">
+              <HomeLink to={`/home`}>Home</HomeLink>
               <CustomDropdown
                 dropdownTitle={"Programs"}
                 columns={["Introduction", "Beginner", "Average", "Expert"]}

@@ -205,8 +205,8 @@ const SocialIcon = styled.img`
 function Footer() {
   const footerLink = [
     {
-      title: "Aiuto",
-      links: ["Cacca", "Cacca", "Cacca", "Cacca"],
+      title: "Programs",
+      links: ["Introduction", "Beginner", "Average", "Expert"],
     },
     {
       title: "Aiuto",
@@ -239,7 +239,7 @@ function Footer() {
                   <FooterLi key={index}>
                     <LiTitle>{data.title}</LiTitle>
                     {data.links.map((link, linkIndex) => (
-                      <LiLink key={linkIndex} href="/">
+                      <LiLink key={linkIndex} href={`/programs/${link.toLowerCase()}`}>
                         {link}
                       </LiLink>
                     ))}

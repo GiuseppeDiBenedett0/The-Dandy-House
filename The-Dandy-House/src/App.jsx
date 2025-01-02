@@ -39,12 +39,13 @@ function App() {
       <Router>
         <GlobalStyle />
         <CustomNavbar />
-        <ScrollPage/>
+        <ScrollPage />
         <ContentWrapper>
           <Routes>
-            <Route path="/" element={<HomeContent/>}/>
-            <Route path="/programs/introduction" element={<Introduction/>}/>
-            <Route path="/programs/:section" element={<ProgramsPage/>}/>
+            <Route path="/" element={<HomeContent />} />
+            <Route path="/home" element={<HomeContent />} />
+            <Route path="/programs/introduction" element={<Introduction />} />
+            <Route path="/programs/:section" element={<ProgramsPage />} />
           </Routes>
         </ContentWrapper>
         <Footer />

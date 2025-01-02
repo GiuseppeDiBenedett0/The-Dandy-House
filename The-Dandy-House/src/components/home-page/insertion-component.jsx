@@ -10,7 +10,7 @@ const InsertionContainer = styled.div`
 
   @media (max-width: 940px) {
     width: 100%;
-    height: 260px;
+    height: 175px;
   }
 `;
 

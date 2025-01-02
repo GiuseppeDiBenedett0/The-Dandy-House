@@ -17,6 +17,7 @@ const IntroCardData = [
       "linear-gradient(90deg, rgba(41,55,10,1) 18%, rgba(76,91,14,1) 100%)",
     imgWidth: "100%",
     imgHeight: "48%",
+    link: "/programs/Beginner"
   },
   {
     title: "Nagoriyuki",
@@ -36,7 +37,8 @@ const IntroCardData = [
     imgHeight: "50%",
     buttonBackColor: "#141414",
     buttonColor: "#dfdfdf",
-    butonHoverColor: "#353535",
+    buttonHoverColor: "#353535",
+    link: "/programs/Average"
   },
   {
     title: "Coach Whitefang",
@@ -52,6 +54,7 @@ const IntroCardData = [
       "linear-gradient(90deg, rgba(69,45,0,1) 18%, rgba(119,78,1,1) 100%)",
     imgWidth: "50%",
     imgHeight: "51%",
+    link: "/programs/Expert"
   },
 ];
 
