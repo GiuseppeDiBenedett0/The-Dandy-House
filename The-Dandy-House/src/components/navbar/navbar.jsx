@@ -1,3 +1,4 @@
+import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -96,15 +97,31 @@ const MenuToggle = styled(Navbar.Toggle)`
 `;
 
 function CustomNavbar() {
+  const [expanded, setExpanded] = useState(false);
+  const navbarRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+      setExpanded(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
-      <StyledNavbar expand="lg" variant="dark">
+      <StyledNavbar expand="lg" variant="dark" expanded={expanded} ref={navbarRef}>
         <CustomContainer>
           <CustomBrand to={`/home`}>
             The Dandy Step
             <BrandImg src={brandImage} />
           </CustomBrand>
-          <MenuToggle aria-controls="basic-navbar-nav" />
+          <MenuToggle aria-controls="basic-navbar-nav" onClick={() => setExpanded((prevExpanded) => !prevExpanded)}/>
           <Navbar.Collapse id="basic-navbar-nav">
             <CustomNav className="me-auto">
               <HomeLink to={`/home`}>Home</HomeLink>
