@@ -127,19 +127,18 @@ function CustomNavbar() {
               <HomeLink to={`/home`}>Home</HomeLink>
               <CustomDropdown
                 dropdownTitle={"Programs"}
+                linkSection={"Programs"}
                 columns={["Introduction", "Beginner", "Average", "Expert"]}
               />
               <CustomDropdown
-                dropdownTitle={"Caso"}
-                columns={["Ciao", "Stefi"]}
+                dropdownTitle={"Healthy living"}
+                linkSection={"Healthy-living"}
+                columns={["Articles", "Recipes"]}
               />
               <CustomDropdown
                 dropdownTitle={"Dei giochi"}
+                linkSection={"Dei giochi"}
                 columns={["Ciao", "Stefi", "Sono"]}
-              />
-              <CustomDropdown
-                dropdownTitle={"Olimpici"}
-                columns={["Ciao", "Stefi", "Sono", "Papà"]}
               />
             </CustomNav>
           </Navbar.Collapse>

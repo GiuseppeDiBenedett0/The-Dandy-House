@@ -7,6 +7,7 @@ import Introduction from "./components/programs-page/introduction";
 import ArrowUp from "./components/navbar/arrow-up";
 import Footer from "./components/footer";
 import ProgramsPage from "./components/programs-page/programs-pages";
+import ArticlesHomePage from "./components/healthy-page/articles-home-page";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -46,6 +47,7 @@ function App() {
             <Route path="/home" element={<HomeContent />} />
             <Route path="/programs/introduction" element={<Introduction />} />
             <Route path="/programs/:section" element={<ProgramsPage />} />
+            <Route path="/healthy-living/articles" element={<ArticlesHomePage />} />
           </Routes>
         </ContentWrapper>
         <Footer />

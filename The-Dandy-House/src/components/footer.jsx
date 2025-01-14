@@ -84,12 +84,16 @@ const FooterUl = styled.ul`
   list-style: none;
   text-transform: uppercase;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
   padding: 0;
   width: 100%;
 
   @media (max-width: 1155px) {
+    gap: 32px;
+  }
+
+  @media (max-width: 940px) {
     gap: 0;
   }
 
@@ -117,6 +121,7 @@ const LiTitle = styled.h3`
   color: ${({ theme }) => theme.textColors.primary};
   font-size: 1.4rem;
   margin-bottom: 16px;
+  white-space: nowrap
 `;
 
 const LiLink = styled.a`
@@ -209,16 +214,12 @@ function Footer() {
       links: ["Introduction", "Beginner", "Average", "Expert"],
     },
     {
-      title: "Aiuto",
-      links: ["Cacca", "Cacca"],
+      title: "Healthy living",
+      links: ["Articles", "Recipes"],
     },
     {
       title: "Aiuto",
       links: ["Cacca", "Cacca", "Cacca"],
-    },
-    {
-      title: "Aiuto",
-      links: ["Cacca", "Cacca", "Cacca", "Cacca"],
     },
   ];
   return (

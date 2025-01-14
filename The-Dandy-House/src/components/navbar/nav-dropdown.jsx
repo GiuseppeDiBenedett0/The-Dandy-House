@@ -105,7 +105,7 @@ const MotionDropdownMenu = styled(motion.div)`
   }
 `;
 
-function CustomDropdown({ dropdownTitle, columns = [] }) {
+function CustomDropdown({ dropdownTitle, columns = [], linkSection }) {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const dropdownVariants = {
@@ -135,7 +135,7 @@ function CustomDropdown({ dropdownTitle, columns = [] }) {
               >
                 {columns.map((column, index) => (
                   <CustomDropdownItem
-                    to={`/programs/${column.toLowerCase()}`}
+                    to={`${linkSection}/${column.toLowerCase()}`}
                     key={index}
                     className={
                       index < columns.length - 1 ? "border-bottom" : ""
