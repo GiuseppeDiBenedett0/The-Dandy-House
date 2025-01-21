@@ -3,8 +3,7 @@ import SlayerMain from "../assets/Slayer_Strive.webp";
 const ArticlesCardsData = [
   {
     title: "Millia1",
-    paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla. 
-                    Vestibulum pretium pretium massa. Duis dictum justo nec ligula sodales semper. Nunc porta vel enim non venenatis.`,
+    paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla.`,
     image: SlayerMain,
     alt: "Slayer",
     author: "Millia",
@@ -13,8 +12,7 @@ const ArticlesCardsData = [
   },
   {
     title: "Leo1",
-    paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla. 
-                    Vestibulum pretium pretium massa. Duis dictum justo nec ligula sodales semper. Nunc porta vel enim non venenatis.`,
+    paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla.`,
     image: SlayerMain,
     alt: "Slayer",
     author: "Leo",
@@ -23,8 +21,7 @@ const ArticlesCardsData = [
   },
   {
     title: "Potemkin1",
-    paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla. 
-                    Vestibulum pretium pretium massa. Duis dictum justo nec ligula sodales semper. Nunc porta vel enim non venenatis.`,
+    paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla.`,
     image: SlayerMain,
     alt: "Slayer",
     author: "Potemkin",
@@ -33,8 +30,7 @@ const ArticlesCardsData = [
   },
   {
     title: "Millia2",
-    paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla. 
-                    Vestibulum pretium pretium massa. Duis dictum justo nec ligula sodales semper. Nunc porta vel enim non venenatis.`,
+    paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla.`,
     image: SlayerMain,
     alt: "Slayer",
     author: "Millia",
@@ -43,8 +39,7 @@ const ArticlesCardsData = [
   },
   {
     title: "Potemkin2",
-    paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla. 
-                    Vestibulum pretium pretium massa. Duis dictum justo nec ligula sodales semper. Nunc porta vel enim non venenatis.`,
+    paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla.`,
     image: SlayerMain,
     alt: "Slayer",
     author: "Potemkin",
@@ -53,8 +48,7 @@ const ArticlesCardsData = [
   },
   {
     title: "Potemkin3",
-    paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla. 
-                    Vestibulum pretium pretium massa. Duis dictum justo nec ligula sodales semper. Nunc porta vel enim non venenatis.`,
+    paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla.`,
     image: SlayerMain,
     alt: "Slayer",
     author: "Potemkin",
@@ -63,8 +57,7 @@ const ArticlesCardsData = [
   },
   {
     title: "Leo2",
-    paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla. 
-                    Vestibulum pretium pretium massa. Duis dictum justo nec ligula sodales semper. Nunc porta vel enim non venenatis.`,
+    paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla.`,
     image: SlayerMain,
     alt: "Slayer",
     author: "Leo",

@@ -2,87 +2,147 @@ import styled from "styled-components";
 import { useState } from "react";
 import { Card } from "react-bootstrap";
 import CardSideNavSection from "./sidebar-cardsection";
-import ArticlesCardsData from "../../data/articles-cards";
+import useFilteredArticles from "../hooks/filter-section-hook";
 
-function ArticlesCardsSection() {
-  const [sortOrder, setSortOrder] = useState("newest");
-  const [filterAuth, setFilterAuth] = useState("");
-  const [filterCategory, setFilterCategory] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+const CustomCard = styled(Card)`
+  width: 18rem;
+  background-color: #f3f3f3;
+  border: 1px solid #c51400;
 
-  const filteredAndSortedArticles = [...ArticlesCardsData]
-    .filter((article) => filterAuth === "" || article.author === filterAuth)
-    .filter(
-      (article) => filterCategory === "" || article.category === filterCategory
-    )
-    .filter(
-      (article) =>
-        searchTerm === "" ||
-        article.title.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    .sort((a, b) => {
-      return sortOrder === "newest"
-        ? new Date(b.date) - new Date(a.date)
-        : new Date(a.date) - new Date(b.date);
-    });
+  @media (max-width: 755px) {
+    width: 90%;
+  }
+`;
 
-  const avaibleAuthors = [
+const CustomCardTitle = styled(Card.Title)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  background-color: #070707;
+  font-family: ${({ theme }) => theme.fonts.oswald};
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: #f13932;
+  border-bottom: 1px solid #c51400;
+  border-radius: 5px;
+  margin-bottom: 16px;
+`;
+
+const CustomCardImage = styled(Card.Img)`
+  width: 100%;
+  border-bottom: 1px solid #c51400;
+  padding: 8px;
+`;
+
+const CustomCardBody = styled(Card.Body)`
+  background-color: #070707;
+`;
+
+const CustomCardText = styled(Card.Text)`
+  font-family: ${({ theme }) => theme.fonts.oswald};
+  font-size: 1.2rem;
+  color: #ffffff;
+`;
+const CardInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+const InfoContainer = styled.div`
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+`;
+
+const InfoText = styled.span`
+  font-family: ${({ theme }) => theme.fonts.oswald};
+  font-size: 1rem;
+  color: #f13932;
+`;
+
+function ArticlesCardsSection({ articleData }) {
+  const [filters, setFilters] = useState({
+    sortOrder: "newest",
+    filterAuth: "",
+    filterCategory: "",
+    searchTerm: "",
+  });
+
+  const filteredAndSortedArticles = useFilteredArticles(articleData, filters);
+
+  const availableAuthors = [
     ...new Set(
-      ArticlesCardsData.filter(
-        (article) =>
-          (filterCategory === "") | (article.category === filterCategory)
-      ).map((article) => article.author)
+      articleData
+        .filter(
+          (article) =>
+            filters.filterCategory === "" ||
+            article.category === filters.filterCategory
+        )
+        .map((article) => article.author)
     ),
   ];
 
-  const avaibleCategories = [
+  const availableCategories = [
     ...new Set(
-      ArticlesCardsData.filter(
-        (article) =>
-          (filterAuth === "") | (article.author === filterAuth)
-      ).map((article) => article.category)
+      articleData
+        .filter(
+          (article) =>
+            filters.filterAuth === "" || article.author === filters.filterAuth
+        )
+        .map((article) => article.category)
     ),
   ];
 
-  const handleSortChange = (order) => {
-    setSortOrder(order);
-  };
-
-  const handleAuthorFilter = (author) => {
-    setFilterAuth(author);
-  };
-
-  const handleCategoryFilter = (category) => {
-    setFilterCategory(category);
+  const handleFilterChange = (key, value) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
   };
 
   return (
     <>
       <CardSideNavSection
         resultsNumber={filteredAndSortedArticles.length}
-        onSortChange={handleSortChange}
-        onFilteredAuht={handleAuthorFilter}
-        onFilteredCategory={handleCategoryFilter}
-        avaibleAuthors={avaibleAuthors}
-        avaibleCategories={avaibleCategories}
-        search={searchTerm}
-        setSearch={(e) => setSearchTerm(e.target.value)}
+        onSortChange={(order) => handleFilterChange("sortOrder", order)}
+        onFilteredAuth={(author) => handleFilterChange("filterAuth", author)}
+        onFilteredCategory={(category) =>
+          handleFilterChange("filterCategory", category)
+        }
+        availableAuthors={availableAuthors}
+        availableCategories={availableCategories}
+        search={filters.searchTerm}
+        setSearch={(e) => handleFilterChange("searchTerm", e.target.value)}
         card={
           <>
             {filteredAndSortedArticles.length === 0 ? (
               <div>No results</div>
             ) : (
               filteredAndSortedArticles.map((data, index) => (
-                <Card key={index} style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src={data.image} alt={data.alt} />
-                  <Card.Body>
-                    <Card.Title>{data.title}</Card.Title>
-                    <span>{data.author}</span>
-                    <span>{data.category}</span>
-                    <Card.Text>{data.paragraph}</Card.Text>
-                    <span>{data.date}</span>
-                  </Card.Body>
-                </Card>
+                <CustomCard key={index}>
+                  <CustomCardTitle>{data.title}</CustomCardTitle>
+                  <CustomCardImage
+                    variant="top"
+                    src={data.image}
+                    alt={data.alt}
+                  />
+                  <CustomCardBody>
+                    <CustomCardText>{data.paragraph}</CustomCardText>
+                    <CardInfo>
+                      <InfoContainer>
+                        <InfoText>{data.author}</InfoText>
+                      </InfoContainer>
+                      <InfoContainer>
+                        <InfoText>{data.date}</InfoText>
+                      </InfoContainer>
+                      <InfoContainer>
+                        <InfoText>{data.category}</InfoText>
+                      </InfoContainer>
+                    </CardInfo>
+                  </CustomCardBody>
+                </CustomCard>
               ))
             )}
           </>

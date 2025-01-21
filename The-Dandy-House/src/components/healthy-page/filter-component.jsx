@@ -13,6 +13,15 @@ const CustomDropdownToggle = styled(Dropdown.Toggle)`
     border-radius: 0;
     width: 100%;
     padding: 8px;
+
+    &&:hover,
+    &&:focus,
+    &&:active {
+      background-color: transparent;
+      color: #f13932;
+      border: none;
+      box-shadow: none;
+    }
   }
 `;
 
@@ -21,7 +30,8 @@ const CustomDropdownMenu = styled(Dropdown.Menu)`
     position: static !important;
     transform: translate(0, 0) !important;
     background-color: #181818;
-    border: 1px solid #c51400;
+    border-top: 1px solid #c51400;
+    border-bottom: 1px solid #c51400;
     border-radius: 0;
     padding: 0;
     width: 100%;
@@ -39,7 +49,7 @@ const CustomDropdownItems = styled(Dropdown.Item)`
     &&:hover,
     &&:focus,
     &&:active {
-      background-color: #000000;
+      background-color: #050505;
       color: #c51400;
       box-shadow: none;
     }
@@ -50,6 +60,12 @@ const CustomDropdownItems = styled(Dropdown.Item)`
         background-color: #000000;
         color: #c51400;
         box-shadow: none;
+
+        &&:hover,
+        &&:focus,
+        &&:active {
+         background-color: #000000;
+        }
       `}
   }
 `;
@@ -57,8 +73,8 @@ function FilterComponent({ sectionName, items = [""], onClick }) {
   const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
-    if (!selectedItem && items.includes("All Author")) {
-      setSelectedItem("All Author");
+    if (!selectedItem && items.includes("All Authors")) {
+      setSelectedItem("All Authors");
     } else if (!selectedItem && items.includes("All Categories")) {
       setSelectedItem("All Categories");
     }
