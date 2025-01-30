@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -54,19 +54,23 @@ const CustomBrand = styled(Link)`
   }
 `;
 
-const HomeLink = styled(Link)`
+const HomeLink = styled(NavLink).attrs(({ isActive }) => ({
+  className: isActive ? "active" : "",
+}))`
   text-transform: uppercase;
   text-decoration: none;
   font-size: 1.4rem;
   font-family: ${({ theme }) => theme.fonts.notoSans};
   margin: 18px 18px 18px 18px;
-  color: ${({ theme }) => theme.textColors.primary};
+  color: ${({ theme, isActive }) =>
+    isActive ? theme.textColors.secondary : theme.textColors.primary};
 
-  &:hover,
-  &:active,
-  &:focus,
-  &:visited {
-    color: ${({ theme }) => theme.textColors.primary};
+  &.active {
+    color: ${({ theme }) => theme.textColors.secondary};
+  }
+
+  &:hover {
+    color: ${({ theme }) => theme.textColors.secondary};
   }
 
   @media (max-width: 1200px) {
@@ -115,13 +119,21 @@ function CustomNavbar() {
 
   return (
     <>
-      <StyledNavbar expand="lg" variant="dark" expanded={expanded} ref={navbarRef}>
+      <StyledNavbar
+        expand="lg"
+        variant="dark"
+        expanded={expanded}
+        ref={navbarRef}
+      >
         <CustomContainer>
           <CustomBrand to={`/home`}>
             The Dandy Step
             <BrandImg src={brandImage} />
           </CustomBrand>
-          <MenuToggle aria-controls="basic-navbar-nav" onClick={() => setExpanded((prevExpanded) => !prevExpanded)}/>
+          <MenuToggle
+            aria-controls="basic-navbar-nav"
+            onClick={() => setExpanded((prevExpanded) => !prevExpanded)}
+          />
           <Navbar.Collapse id="basic-navbar-nav">
             <CustomNav className="me-auto">
               <HomeLink to={`/home`}>Home</HomeLink>

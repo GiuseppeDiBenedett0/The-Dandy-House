@@ -71,7 +71,7 @@ function HomeContent() {
                 $cardPColor={data.cardPColor}
                 $buttonBackgroundColor={data.buttonBackColor}
                 $buttonTextColor={data.buttonColor}
-                $buttonHover={data.butonHoverColor}
+                $buttonHover={data.buttonHoverColor}
                 $width={data.imgWidth}
                 $height={data.imgHeight}
                 $imageMaxWidth={data.imageMaxWidth}

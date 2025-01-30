@@ -3,12 +3,12 @@ import styled from "styled-components";
 const Paragraph = styled.p`
   font-size: 1.6rem;
   font-family: ${({ theme }) => theme.fonts.oswald};
-  color: #e0e0e0;
+  color: ${({ theme }) => theme.textColors.primary};
   text-align: left;
   line-height: 1.7;
 
   .bold {
-    color: #f13932;
+    color: ${({ theme }) => theme.textColors.secondary};
     font-weight: 600;
   }
 

@@ -60,7 +60,7 @@ const CardData = [
     imgHeight: "50%",
     buttonBackColor: "#141414",
     buttonColor: "#dfdfdf",
-    butonHoverColor: "#353535",
+    buttonHoverColor: "#353535",
   },
   {
     title: "Coach Whitefang",

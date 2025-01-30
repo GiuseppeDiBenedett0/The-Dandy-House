@@ -35,7 +35,7 @@ function CardSideNavSection({
   search,
   setSearch,
 }) {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const isMobile = useIsMobile();
 
   const toggleSidebar = () => {

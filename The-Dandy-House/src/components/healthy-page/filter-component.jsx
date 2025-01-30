@@ -7,7 +7,7 @@ const CustomDropdownToggle = styled(Dropdown.Toggle)`
     font-size: 1.4rem;
     font-family: ${({ theme }) => theme.fonts.oswald};
     background-color: transparent;
-    color: #f13932;
+    color: ${({ theme }) => theme.textColors.secondary};
     text-align: justify;
     border: none;
     border-radius: 0;
@@ -18,7 +18,7 @@ const CustomDropdownToggle = styled(Dropdown.Toggle)`
     &&:focus,
     &&:active {
       background-color: transparent;
-      color: #f13932;
+      color: ${({ theme }) => theme.textColors.secondary};
       border: none;
       box-shadow: none;
     }
@@ -43,14 +43,14 @@ const CustomDropdownItems = styled(Dropdown.Item)`
   && {
     font-size: 1.2rem;
     font-family: ${({ theme }) => theme.fonts.oswald};
-    color: #c51400;
+    color: ${({ theme }) => theme.textColors.secondary};
     padding: 12px;
 
     &&:hover,
     &&:focus,
     &&:active {
       background-color: #050505;
-      color: #c51400;
+      color: ${({ theme }) => theme.textColors.secondary};
       box-shadow: none;
     }
 
@@ -58,7 +58,7 @@ const CustomDropdownItems = styled(Dropdown.Item)`
       props.active &&
       `
         background-color: #000000;
-        color: #c51400;
+        color: ${({ theme }) => theme.textColors.secondary};
         box-shadow: none;
 
         &&:hover,

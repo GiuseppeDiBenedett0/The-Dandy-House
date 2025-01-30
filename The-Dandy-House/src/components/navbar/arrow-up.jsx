@@ -16,12 +16,12 @@ const ArrowHref = styled.a`
   left: 0;
   bottom: 0;
   width: 150px;
-  background-color: ${({ theme }) => theme.primaryButtons.background};
+  background-color: ${({ theme }) => theme.secondaryButtons.background};
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 
   &:hover {
     background-color: ${({ theme }) =>
-      theme.primaryButtons.hover.hoverBackground};
+      theme.secondaryButtons.hover.hoverBackground};
   }
 
   @media (max-width: 600px) {

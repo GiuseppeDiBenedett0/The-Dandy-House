@@ -20,7 +20,8 @@ const SideBar = styled(motion.div)`
     z-index: 1;
     top: 131px;
     left: 0;
-    width: 284px;
+    width: 100%;
+    border-right: none;
   }
 `;
 
@@ -73,7 +74,7 @@ function SidebarComponent({
   };
 
   const mobileSidebarVariants = {
-    visible: { height: "800px", opacity: 1 },
+    visible: { height: "auto", opacity: 1 },
     hidden: { height: "0px", opacity: 0 },
   };
 

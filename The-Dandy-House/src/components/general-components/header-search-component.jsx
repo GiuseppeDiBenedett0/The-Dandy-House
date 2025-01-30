@@ -28,6 +28,8 @@ const SideBarHeader = styled.div`
 
   @media (max-width: 780px) {
     width: 100%;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -80,6 +82,8 @@ const TextWrapper = styled.div`
 `;
 
 const FilterButton = styled.button`
+  background-color: #f9f9f9;
+  color: #000000;
   display: flex;
   width: 232px;
   height: 45px;
@@ -101,8 +105,12 @@ const FilterButton = styled.button`
   }
 
   @media (max-width: 780px) {
-    width: 100%;
+    width: 80%;
     margin: 8px 0;
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
   }
 `;
 
@@ -125,7 +133,7 @@ function HeaderSearchComponent({
                 <HeaderTitle>Our Articles</HeaderTitle>
                 <ResultsText>{resultsNumber} results</ResultsText>
               </TextWrapper>
-              <FilterButton variant="light" onClick={toggleSidebar}>
+              <FilterButton onClick={toggleSidebar}>
                 <img
                   src={isVisible ? filterIconOn : filterIconOff}
                   alt="Filter Icon"

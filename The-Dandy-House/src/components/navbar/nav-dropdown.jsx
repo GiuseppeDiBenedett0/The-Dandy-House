@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import styled from "styled-components";
@@ -37,14 +38,14 @@ const CustomNavDropdown = styled(NavDropdown)`
     &:active,
     &:focus,
     &:visited {
-      color: ${({ theme }) => theme.textColors.primary};
+      color: ${({ theme }) => theme.textColors.secondary};
       background-color: transparent;
     }
 
     &:hover {
-      color: ${({ theme }) => theme.textColors.primary};
+      color: ${({ theme }) => theme.textColors.secondary};
       background-color: ${({ theme }) =>
-        theme.primaryButtons.hover.hoverBackground};
+        theme.secondaryButtons.hover.hoverBackground};
     }
 
     @media (max-width: 991px) {
@@ -56,14 +57,15 @@ const CustomNavDropdown = styled(NavDropdown)`
   .nav-link {
     display: flex;
     align-items: center;
-    color: ${({ theme }) => theme.textColors.primary};
+    color: ${({ theme, $isActive }) =>
+      $isActive ? theme.textColors.secondary : theme.textColors.primary};
     height: 70px;
     padding: 0;
   }
 
   .nav-link.active,
   .nav-link.show {
-    color: ${({ theme }) => theme.textColors.hover.hoverText} !important;
+    color: ${({ theme }) => theme.textColors.secondary} !important;
     background-color: #000000 !important;
   }
 
@@ -85,9 +87,9 @@ const CustomDropdownItem = styled(Link)`
   text-decoration: none;
 
   &:hover {
-    color: ${({ theme }) => theme.primaryButtons.hover.hoverText};
+    color: ${({ theme }) => theme.secondaryButtons.hover.hoverText};
     background-color: ${({ theme }) =>
-      theme.primaryButtons.hover.hoverBackground};
+      theme.secondaryButtons.hover.hoverBackground};
   }
 `;
 
@@ -107,6 +109,11 @@ const MotionDropdownMenu = styled(motion.div)`
 
 function CustomDropdown({ dropdownTitle, columns = [], linkSection }) {
   const [showDropdown, setShowDropdown] = useState(false);
+  const location = useLocation();
+
+  const isDropdownActive = columns.some((column) => {
+    return location.pathname.includes(`${linkSection}/${column.toLowerCase()}`);
+  });
 
   const dropdownVariants = {
     hidden: { opacity: 0, height: 0 },
@@ -123,6 +130,7 @@ function CustomDropdown({ dropdownTitle, columns = [], linkSection }) {
           title={dropdownTitle}
           id="basic-nav-dropdown"
           show={showDropdown}
+          $isActive={isDropdownActive}
         >
           <AnimatePresence>
             {showDropdown && (
@@ -133,17 +141,22 @@ function CustomDropdown({ dropdownTitle, columns = [], linkSection }) {
                 exit="exit"
                 variants={dropdownVariants}
               >
-                {columns.map((column, index) => (
-                  <CustomDropdownItem
-                    to={`${linkSection}/${column.toLowerCase()}`}
-                    key={index}
-                    className={
-                      index < columns.length - 1 ? "border-bottom" : ""
-                    }
-                  >
-                    {column}
-                  </CustomDropdownItem>
-                ))}
+                {columns.map((column, index) => {
+                  const linkPath = `${linkSection}/${column.toLowerCase()}`;
+                  const isActive = location.pathname.includes(linkPath);
+
+                  return (
+                    <CustomDropdownItem
+                      to={`${linkSection}/${column.toLowerCase()}`}
+                      key={index}
+                      className={`${
+                        index < columns.length - 1 ? "border-bottom" : ""
+                      } ${isActive ? "active" : ""}`}
+                    >
+                      {column}
+                    </CustomDropdownItem>
+                  );
+                })}
               </MotionDropdownMenu>
             )}
           </AnimatePresence>

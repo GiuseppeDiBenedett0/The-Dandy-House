@@ -1,8 +1,15 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Card } from "react-bootstrap";
 import CardSideNavSection from "./sidebar-cardsection";
 import useFilteredArticles from "../hooks/filter-section-hook";
+import PaginationComponent from "./pagination-component";
+
+const ScrollContainer = styled.div`
+  position: relative;
+  overflow: auto;
+  scroll-behavior: smooth;
+`;
 
 const CustomCard = styled(Card)`
   width: 18rem;
@@ -23,7 +30,7 @@ const CustomCardTitle = styled(Card.Title)`
   font-family: ${({ theme }) => theme.fonts.oswald};
   font-size: 1.5rem;
   text-transform: uppercase;
-  color: #f13932;
+  color: ${({ theme }) => theme.textColors.secondary};
   border-bottom: 1px solid #c51400;
   border-radius: 5px;
   margin-bottom: 16px;
@@ -42,7 +49,7 @@ const CustomCardBody = styled(Card.Body)`
 const CustomCardText = styled(Card.Text)`
   font-family: ${({ theme }) => theme.fonts.oswald};
   font-size: 1.2rem;
-  color: #ffffff;
+  color: ${({ theme }) => theme.textColors.primary};
 `;
 const CardInfo = styled.div`
   display: flex;
@@ -56,13 +63,12 @@ const InfoContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
 `;
 
 const InfoText = styled.span`
   font-family: ${({ theme }) => theme.fonts.oswald};
   font-size: 1rem;
-  color: #f13932;
+  color: ${({ theme }) => theme.textColors.secondary};
 `;
 
 function ArticlesCardsSection({ articleData }) {
@@ -72,8 +78,36 @@ function ArticlesCardsSection({ articleData }) {
     filterCategory: "",
     searchTerm: "",
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+
+  const sectionRef = useRef(null);
 
   const filteredAndSortedArticles = useFilteredArticles(articleData, filters);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentArticles = filteredAndSortedArticles.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  const totalPages = Math.ceil(filteredAndSortedArticles.length / itemsPerPage);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    if (sectionRef.current) {
+      const offset = 50;
+      const topPosition =
+        sectionRef.current.getBoundingClientRect().top +
+        window.scrollY -
+        offset;
+
+      window.scrollTo({
+        top: topPosition,
+        behavior: "smooth",
+      });
+    }
+  };
 
   const availableAuthors = [
     ...new Set(
@@ -100,54 +134,62 @@ function ArticlesCardsSection({ articleData }) {
 
   const handleFilterChange = (key, value) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
+    setCurrentPage(1);
   };
 
   return (
     <>
-      <CardSideNavSection
-        resultsNumber={filteredAndSortedArticles.length}
-        onSortChange={(order) => handleFilterChange("sortOrder", order)}
-        onFilteredAuth={(author) => handleFilterChange("filterAuth", author)}
-        onFilteredCategory={(category) =>
-          handleFilterChange("filterCategory", category)
-        }
-        availableAuthors={availableAuthors}
-        availableCategories={availableCategories}
-        search={filters.searchTerm}
-        setSearch={(e) => handleFilterChange("searchTerm", e.target.value)}
-        card={
-          <>
-            {filteredAndSortedArticles.length === 0 ? (
-              <div>No results</div>
-            ) : (
-              filteredAndSortedArticles.map((data, index) => (
-                <CustomCard key={index}>
-                  <CustomCardTitle>{data.title}</CustomCardTitle>
-                  <CustomCardImage
-                    variant="top"
-                    src={data.image}
-                    alt={data.alt}
-                  />
-                  <CustomCardBody>
-                    <CustomCardText>{data.paragraph}</CustomCardText>
-                    <CardInfo>
-                      <InfoContainer>
-                        <InfoText>{data.author}</InfoText>
-                      </InfoContainer>
-                      <InfoContainer>
-                        <InfoText>{data.date}</InfoText>
-                      </InfoContainer>
-                      <InfoContainer>
-                        <InfoText>{data.category}</InfoText>
-                      </InfoContainer>
-                    </CardInfo>
-                  </CustomCardBody>
-                </CustomCard>
-              ))
-            )}
-          </>
-        }
-      />
+      <ScrollContainer ref={sectionRef}>
+        <CardSideNavSection
+          resultsNumber={filteredAndSortedArticles.length}
+          onSortChange={(order) => handleFilterChange("sortOrder", order)}
+          onFilteredAuth={(author) => handleFilterChange("filterAuth", author)}
+          onFilteredCategory={(category) =>
+            handleFilterChange("filterCategory", category)
+          }
+          availableAuthors={availableAuthors}
+          availableCategories={availableCategories}
+          search={filters.searchTerm}
+          setSearch={(e) => handleFilterChange("searchTerm", e.target.value)}
+          card={
+            <>
+              {currentArticles.length === 0 ? (
+                <div>No results</div>
+              ) : (
+                currentArticles.map((data, index) => (
+                  <CustomCard key={index}>
+                    <CustomCardTitle>{data.title}</CustomCardTitle>
+                    <CustomCardImage
+                      variant="top"
+                      src={data.image}
+                      alt={data.alt}
+                    />
+                    <CustomCardBody>
+                      <CustomCardText>{data.paragraph}</CustomCardText>
+                      <CardInfo>
+                        <InfoContainer>
+                          <InfoText>{data.author}</InfoText>
+                        </InfoContainer>
+                        <InfoContainer>
+                          <InfoText>{data.date}</InfoText>
+                        </InfoContainer>
+                        <InfoContainer>
+                          <InfoText>{data.category}</InfoText>
+                        </InfoContainer>
+                      </CardInfo>
+                    </CustomCardBody>
+                  </CustomCard>
+                ))
+              )}
+            </>
+          }
+        />
+        <PaginationComponent
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      </ScrollContainer>
     </>
   );
 }
