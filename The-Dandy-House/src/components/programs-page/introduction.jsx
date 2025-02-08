@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import AnimatedWrapper from "../general-components/animation/animated-wrapper";
 import CardsComponent from "../home-page/cards-component";
 import TipsSection from "../tips-section";
-import ProgramsTextSection from "../general-components/programs-text-section";
+import TextSection from "../general-components/text-section";
 import IntroData from "../../data/introduction-data";
 import IntroCardData from "../../data/introduction-card";
 import TipsData from "../../data/tips";
@@ -35,7 +35,7 @@ function Introduction() {
 
   return (
     <AnimatedWrapper>
-      <ProgramsTextSection content={IntroData} />
+      <TextSection content={IntroData} />
       <CardContainer>
         <CardGrid>
           {IntroCardData.map((data, index) => {

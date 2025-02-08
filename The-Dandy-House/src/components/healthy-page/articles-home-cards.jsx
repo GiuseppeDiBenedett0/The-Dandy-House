@@ -4,6 +4,8 @@ import { Card } from "react-bootstrap";
 import CardSideNavSection from "./sidebar-cardsection";
 import useFilteredArticles from "../hooks/filter-section-hook";
 import PaginationComponent from "./pagination-component";
+import NoFoundMessage from "../error-message/no-found";
+import { Link } from "react-router-dom";
 
 const ScrollContainer = styled.div`
   position: relative;
@@ -11,10 +13,21 @@ const ScrollContainer = styled.div`
   scroll-behavior: smooth;
 `;
 
+const CardLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+`;
+
 const CustomCard = styled(Card)`
   width: 18rem;
   background-color: #f3f3f3;
   border: 1px solid #c51400;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
 
   @media (max-width: 755px) {
     width: 90%;
@@ -71,7 +84,7 @@ const InfoText = styled.span`
   color: ${({ theme }) => theme.textColors.secondary};
 `;
 
-function ArticlesCardsSection({ articleData }) {
+function ArticlesCardsSection({ articleData, section }) {
   const [filters, setFilters] = useState({
     sortOrder: "newest",
     filterAuth: "",
@@ -154,31 +167,34 @@ function ArticlesCardsSection({ articleData }) {
           card={
             <>
               {currentArticles.length === 0 ? (
-                <div>No results</div>
+                <NoFoundMessage />
               ) : (
                 currentArticles.map((data, index) => (
-                  <CustomCard key={index}>
-                    <CustomCardTitle>{data.title}</CustomCardTitle>
-                    <CustomCardImage
-                      variant="top"
-                      src={data.image}
-                      alt={data.alt}
-                    />
-                    <CustomCardBody>
-                      <CustomCardText>{data.paragraph}</CustomCardText>
-                      <CardInfo>
-                        <InfoContainer>
-                          <InfoText>{data.author}</InfoText>
-                        </InfoContainer>
-                        <InfoContainer>
-                          <InfoText>{data.date}</InfoText>
-                        </InfoContainer>
-                        <InfoContainer>
-                          <InfoText>{data.category}</InfoText>
-                        </InfoContainer>
-                      </CardInfo>
-                    </CustomCardBody>
-                  </CustomCard>
+                  <CardLink to={`/healthy-living/${section}/${data.id}`}>
+                    <CustomCard key={index}>
+                      <CustomCardTitle>{data.title}</CustomCardTitle>
+                      <CustomCardImage
+                        variant="top"
+                        src={data.image}
+                        alt={data.alt}
+                      />
+                      <CustomCardBody>
+                        <CustomCardText>{data.paragraph}</CustomCardText>
+
+                        <CardInfo>
+                          <InfoContainer>
+                            <InfoText>{data.author}</InfoText>
+                          </InfoContainer>
+                          <InfoContainer>
+                            <InfoText>{data.date}</InfoText>
+                          </InfoContainer>
+                          <InfoContainer>
+                            <InfoText>{data.category}</InfoText>
+                          </InfoContainer>
+                        </CardInfo>
+                      </CustomCardBody>
+                    </CustomCard>
+                  </CardLink>
                 ))
               )}
             </>

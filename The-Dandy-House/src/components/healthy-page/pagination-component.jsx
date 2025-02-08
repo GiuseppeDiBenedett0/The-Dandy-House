@@ -31,8 +31,9 @@ const CustomPagination = styled(Pagination)`
   }
 `;
 
-
 function PaginationComponent({ currentPage, totalPages, onPageChange }) {
+  if (totalPages === 0) return null;
+
   const paginationItems = [];
 
   for (let page = 1; page <= totalPages; page++) {
@@ -52,20 +53,20 @@ function PaginationComponent({ currentPage, totalPages, onPageChange }) {
       <CustomPagination>
         <Pagination.First
           onClick={() => onPageChange(1)}
-          disabled={currentPage === 1}
+          disabled={currentPage <= 1}
         />
         <Pagination.Prev
           onClick={() => onPageChange(currentPage - 1)}
-          disabled={currentPage === 1}
+          disabled={currentPage <= 1}
         />
         {paginationItems}
         <Pagination.Next
           onClick={() => onPageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
+          disabled={currentPage >= totalPages}
         />
         <Pagination.Last
           onClick={() => onPageChange(totalPages)}
-          disabled={currentPage === totalPages}
+          disabled={currentPage >= totalPages}
         />
       </CustomPagination>
     </>

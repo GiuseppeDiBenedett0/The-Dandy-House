@@ -9,6 +9,10 @@ const Wrapper = styled(motion.div)`
   flex-direction: ${({ $flexDirection }) => $flexDirection};
   align-items: ${({ $alignItems }) => $alignItems};
   justify-content: ${({ $justifyContent }) => $justifyContent};
+
+  @media(max-width: 450px) {
+    width: 90%;;
+  }
 `;
 
 function AnimatedWrapper({

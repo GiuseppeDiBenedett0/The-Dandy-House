@@ -20,6 +20,7 @@ const CustomNavDropdown = styled(NavDropdown)`
   .dropdown-menu.show {
     background-color: transparent;
     top: 80%;
+    width: 100%;
   }
 
   .dropdown-item {

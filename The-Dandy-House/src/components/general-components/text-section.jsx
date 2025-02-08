@@ -47,7 +47,26 @@ const CustomLi = styled.li`
   }
 `;
 
-function ProgramsTextSection({ content }) {
+const LinkParagraph = styled.p`
+  font-size: 1.3rem;
+  font-family: ${({ theme }) => theme.fonts.oswald};
+  color: ${({ theme }) => theme.textColors.primary};
+  text-align: left;
+  margin: 48px 0 48px 0;
+`;
+
+const Link = styled.a`
+  font-size: 1.3rem;
+  font-family: ${({ theme }) => theme.fonts.oswald};
+  color: ${({ theme }) => theme.textColors.secondary};
+  text-decoration: none;
+
+  &:hover {
+    color: ${({ theme }) => theme.textColors.hover.hoverText};
+  }
+`;
+
+function TextSection({ content }) {
   return (
     <>
       {content.map((section, index) => {
@@ -72,10 +91,26 @@ function ProgramsTextSection({ content }) {
             </CustomUl>
           );
         }
+        if (section.type === "link") {
+          return (
+            <LinkParagraph>
+              {section.content}{" "}
+              <Link
+                href={section.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                questo link
+              </Link>
+              .
+            </LinkParagraph>
+          );
+        }
+
         return null;
       })}
     </>
   );
 }
 
-export default ProgramsTextSection;
+export default TextSection;

@@ -1,9 +1,9 @@
 import SlayerMain from "../assets/Slayer_Strive.webp";
 
-const ArticlesCardsData = [
+const RecipesCardsData = [
   {
     id: 1,
-    title: "Millia1",
+    title: "Ricetta1",
     paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla.`,
     image: SlayerMain,
     alt: "Slayer",
@@ -15,7 +15,7 @@ const ArticlesCardsData = [
   },
   {
     id: 2,
-    title: "Leo1",
+    title: "Ricetta2",
     paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla.`,
     image: SlayerMain,
     alt: "Slayer",
@@ -27,7 +27,7 @@ const ArticlesCardsData = [
   },
   {
     id: 3,
-    title: "Potemkin1",
+    title: "Ricetta3",
     paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla.`,
     image: SlayerMain,
     alt: "Slayer",
@@ -39,7 +39,7 @@ const ArticlesCardsData = [
   },
   {
     id: 4,
-    title: "Millia2",
+    title: "Stefineddu1",
     paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla.`,
     image: SlayerMain,
     alt: "Slayer",
@@ -51,7 +51,7 @@ const ArticlesCardsData = [
   },
   {
     id: 5,
-    title: "Potemkin2",
+    title: "Stefineddu2",
     paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla.`,
     image: SlayerMain,
     alt: "Slayer",
@@ -63,7 +63,7 @@ const ArticlesCardsData = [
   },
   {
     id: 6,
-    title: "Potemkin3",
+    title: "Stefineddu3",
     paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla.`,
     image: SlayerMain,
     alt: "Slayer",
@@ -75,7 +75,7 @@ const ArticlesCardsData = [
   },
   {
     id: 7,
-    title: "Leo2",
+    title: "Barchetta",
     paragraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut mauris vestibulum elit imperdiet cursus. Nunc eu imperdiet nulla.`,
     image: SlayerMain,
     alt: "Slayer",
@@ -87,4 +87,4 @@ const ArticlesCardsData = [
   },
 ];
 
-export default ArticlesCardsData;
+export default RecipesCardsData;

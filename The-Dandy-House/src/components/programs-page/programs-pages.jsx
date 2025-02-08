@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import AnimatedWrapper from "../general-components/animation/animated-wrapper";
-import ProgramsTextSection from "../general-components/programs-text-section";
+import TextSection from "../general-components/text-section";
 import ProgramsData from "../../data/programs";
 import TipsData from "../../data/tips";
 import TipsSection from "../tips-section";
@@ -96,7 +96,7 @@ function ProgramsPage() {
           </VideoWrapper>
         </Wrapper>
 
-        <ProgramsTextSection content={sectionData.content} />
+        <TextSection content={sectionData.content} />
         {tipData && (
           <TipsSection
             audio={tipData.song}

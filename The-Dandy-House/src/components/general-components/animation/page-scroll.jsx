@@ -2,13 +2,15 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const ScrollPage = () => {
-    const location = useLocation();
+  const location = useLocation();
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [location.pathname]);
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+  }, [location.pathname]);
 
-    return null;
+  return null;
 };
 
 export default ScrollPage;
