@@ -121,7 +121,7 @@ const LiTitle = styled.h3`
   color: ${({ theme }) => theme.textColors.primary};
   font-size: 1.4rem;
   margin-bottom: 16px;
-  white-space: nowrap
+  white-space: nowrap;
 `;
 
 const LiLink = styled.a`
@@ -211,15 +211,18 @@ function Footer() {
   const footerLink = [
     {
       title: "Programs",
+      section: "Programs",
       links: ["Introduction", "Beginner", "Average", "Expert"],
     },
     {
       title: "Healthy living",
+      section: "Healthy-living",
       links: ["Articles", "Recipes"],
     },
     {
-      title: "Aiuto",
-      links: ["Cacca", "Cacca", "Cacca"],
+      title: "Details",
+      section: "Details",
+      links: ["About-us", "Rules"],
     },
   ];
   return (
@@ -240,7 +243,10 @@ function Footer() {
                   <FooterLi key={index}>
                     <LiTitle>{data.title}</LiTitle>
                     {data.links.map((link, linkIndex) => (
-                      <LiLink key={linkIndex} href={`/programs/${link.toLowerCase()}`}>
+                      <LiLink
+                        key={linkIndex}
+                        href={`/${data.section.toLowerCase()}/${link.toLowerCase().replace(/\s+/g, "-")}`}
+                      >
                         {link}
                       </LiLink>
                     ))}

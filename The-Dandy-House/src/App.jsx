@@ -14,6 +14,8 @@ import ArticlesCardsData from "./data/articles-cards";
 import ArticlesPagesData from "./data/Articles-pages";
 import RecipesCardsData from "./data/recipes-cards";
 import RecipesPagesData from "./data/recipes-pages";
+import AboutUsPage from "./components/info-pages/about-us";
+import RulesPage from "./components/info-pages/rules";
 import { useEffect } from "react";
 
 const GlobalStyle = createGlobalStyle`
@@ -90,6 +92,8 @@ function App() {
               />
             }
           />
+          <Route path="/details/about-us" element={<AboutUsPage />} />
+          <Route path="/details/rules" element={<RulesPage />} />
         </Routes>
       </ContentWrapper>
       <Footer />

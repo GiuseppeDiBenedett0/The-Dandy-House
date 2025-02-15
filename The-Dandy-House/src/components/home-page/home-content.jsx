@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { useRef } from "react";
-import useOnScreen from "../hooks/main-card-hook";
 import CardsComponent from "./cards-component";
 import Insertion from "./insertion-component";
+import VisibilityAnimation from "../general-components/animation/visibility-animation";
 import CardData from "../../data/home-cards";
 
 const FlexContainer = styled.div`
@@ -37,18 +36,10 @@ function HomeContent() {
       <FlexContainer>
         <GridContainer>
           {CardData.map((data, index) => {
-            const ref = useRef(null);
-            const isVisible = useOnScreen(ref);
-
             return (
-              <MotionCard
+              <VisibilityAnimation
                 key={index}
-                ref={ref}
-                initial={{ opacity: 0, y: 20 }}
-                animate={
-                  isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-                }
-                transition={{ duration: 0.5 }}
+                as={CardsComponent}
                 title={data.title}
                 paragraph={data.paragraph}
                 button={data.button}

@@ -1,5 +1,5 @@
 const primaryButtons = {
-  activeBackground: "#eeeeee",
+  activeBackground: "#e0e0e0",
   text: "#000000",
   hover: {
     hoverBackground: "#000000",

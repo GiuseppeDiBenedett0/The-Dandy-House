@@ -100,15 +100,19 @@ const MotionDropdownMenu = styled(motion.div)`
   top: 100%;
   left: 0;
   right: 0;
+  width: 100%;
+  max-width: ${({ $smallMenu }) => ($smallMenu ? "124px" : "200px")};
   overflow: hidden;
   z-index: 1;
 
   @media (max-width: 991px) {
     position: relative;
+    width: 100%;
+    max-width: 100%;
   }
 `;
 
-function CustomDropdown({ dropdownTitle, columns = [], linkSection }) {
+function CustomDropdown({ dropdownTitle, columns = [], linkSection, isSmall }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const location = useLocation();
 
@@ -141,6 +145,7 @@ function CustomDropdown({ dropdownTitle, columns = [], linkSection }) {
                 animate="visible"
                 exit="exit"
                 variants={dropdownVariants}
+                $smallMenu={isSmall}
               >
                 {columns.map((column, index) => {
                   const linkPath = `${linkSection}/${column.toLowerCase()}`;

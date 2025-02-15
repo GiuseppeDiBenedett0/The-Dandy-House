@@ -148,9 +148,10 @@ function CustomNavbar() {
                 columns={["Articles", "Recipes"]}
               />
               <CustomDropdown
-                dropdownTitle={"Dei giochi"}
-                linkSection={"Dei giochi"}
-                columns={["Ciao", "Stefi", "Sono"]}
+                dropdownTitle={"details"}
+                linkSection={"details"}
+                columns={["About-us", "Rules"]}
+                isSmall={true}
               />
             </CustomNav>
           </Navbar.Collapse>
