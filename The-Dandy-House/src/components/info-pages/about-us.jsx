@@ -122,10 +122,12 @@ const ArrowImg = styled.img`
 function AboutUsPage() {
   const [openSections, setOpenSections] = useState([]);
 
+  //Alterna l'apertura e la chiusura delle sezioni in base al loro indice.
   const toggleSection = (index) => {
-    setOpenSections((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-    );
+    setOpenSections((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
   };
 
   return (
@@ -148,13 +150,13 @@ function AboutUsPage() {
             return (
               <SectionContainer key={sectionIndex}>
                 <DropdownButton onClick={() => toggleSection(sectionIndex)}>
-                  {openSections.includes(sectionIndex)}
+                  {openSections[sectionIndex]}
                   <ButtonText>{section.title}</ButtonText>
                   <ArrowContainer>
                     <ArrowImg src={DropdownArrow} alt="Arrow" />
                   </ArrowContainer>
                 </DropdownButton>
-                {openSections.includes(sectionIndex) && (
+                {openSections[sectionIndex] && (
                   <VisibilityAnimation
                     key={i}
                     as={TextSection}

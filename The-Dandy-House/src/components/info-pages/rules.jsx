@@ -1,15 +1,15 @@
-import styled from "styled-components";
-
-const Container = styled.div`
-  margin-top: 150px;
-`;
+import AnimatedWrapper from "../general-components/animation/animated-wrapper";
+import TextSection from "../general-components/text-section";
+import OlList from "../general-components/ordered-list-component";
+import RulesData from "../../data/rules";
 
 function RulesPage() {
   return (
     <>
-      <Container>
-        <h1>Ciaone Rules page</h1>
-      </Container>
+      <AnimatedWrapper>
+        <TextSection content={RulesData} />
+        <OlList items={RulesData} />
+      </AnimatedWrapper>
     </>
   );
 }

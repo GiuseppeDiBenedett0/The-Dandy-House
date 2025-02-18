@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import parse from "html-react-parser";
 
 const Paragraph = styled.p`
   font-size: 1.6rem;
@@ -12,7 +13,7 @@ const Paragraph = styled.p`
     font-weight: 600;
   }
 
-  @media(max-width: 547px){
+  @media (max-width: 547px) {
     font-size: 1.2rem;
   }
 `;
@@ -20,9 +21,9 @@ const Paragraph = styled.p`
 function ProgramsParagraph({ paragraph }) {
   return (
     <>
-       <Paragraph dangerouslySetInnerHTML={{ __html: paragraph }} />
+      <Paragraph>{parse(paragraph)}</Paragraph>
     </>
   );
-};
+}
 
 export default ProgramsParagraph;
