@@ -1,42 +1,35 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-const MotionTextTitle = motion.create(styled.h2.withConfig({
-  shouldForwardProp: (prop) => !["animation", "variants"].includes(prop),
-})`
-  font-size: 2rem;
+//Creazione di un componente styled-motion dinamico.
+const createMotionText = (Tag) => styled(motion[Tag])`
   font-family: ${({ theme }) => theme.fonts.oswald};
-  color: ${({ theme }) => theme.textColors.secondary};
-  margin: 16px auto;
-  text-align: center;
+  font-size: ${({ $size }) => $size};
+  color: ${({ $color, theme }) => $color || theme.textColors.primary};
+  margin: ${({ $margin }) => $margin || "0"};
+  text-align: ${({ $textAlign }) => $textAlign || "left"};
 
   @media (max-width: 1280px) {
-    font-size: 1.8rem;
+    font-size: ${({ $size }) => `calc(${$size} - 0.2rem)`};
   }
 
   @media (max-width: 565px) {
-    font-size: 1.6rem;
+    font-size: ${({ $size }) => `calc(${$size} - 0.4rem)`};
   }
-`);
+`;
 
-const MotionTextParagraph = motion.create(styled.p.withConfig({
-  shouldForwardProp: (prop) => !["animation", "variants"].includes(prop),
-})`
-  font-size: 1.4rem;
-  font-family: ${({ theme }) => theme.fonts.oswald};
-  color: ${({ theme }) => theme.textColors.primary};
-  margin-bottom: 12px;
+//Creazione dei componenti dinamici utilizzando createMotionText.
+const MotionTextTitle = createMotionText("h2");
+const MotionTextParagraph = createMotionText("p");
 
-  @media (max-width: 1280px) {
-    font-size: 1.3rem;
-  }
 
-  @media (max-width: 565px) {
-    font-size: 1rem;
-  }
-`);
-
-const TextSection = ({ title, description, index, textAnimation, cardVisible }) => {
+const TextSection = ({
+  title,
+  description,
+  index,
+  textAnimation,
+  cardVisible,
+}) => {
   return (
     <>
       <MotionTextTitle
@@ -44,6 +37,10 @@ const TextSection = ({ title, description, index, textAnimation, cardVisible }) 
         animate={cardVisible ? "visible" : "hidden"}
         custom={index}
         variants={textAnimation}
+        $size="2rem"
+        $color={({ theme }) => theme.textColors.secondary}
+        $margin="16px auto"
+        $textAlign="center"
       >
         {title}
       </MotionTextTitle>
@@ -52,6 +49,10 @@ const TextSection = ({ title, description, index, textAnimation, cardVisible }) 
         animate={cardVisible ? "visible" : "hidden"}
         custom={index}
         variants={textAnimation}
+        $size="1.4rem"
+        $color={({ theme }) => theme.textColors.primary}
+        $margin="12px auto"
+        $textAlign="center"
       >
         {description}
       </MotionTextParagraph>

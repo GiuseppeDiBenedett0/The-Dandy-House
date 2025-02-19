@@ -23,6 +23,10 @@ const CustomLi = styled(motion.li)`
     color: ${({ theme }) => theme.textColors.secondary};
     text-decoration: underline;
   }
+
+  @media(max-width: 547px){
+    font-size: 1.2rem;
+  }
 `;
 
 const listVariants = {

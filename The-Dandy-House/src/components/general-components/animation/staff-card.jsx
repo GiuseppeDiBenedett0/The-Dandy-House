@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import VisibilityAnimation from "./visibility-animation";
 import TextSection from "./staff-card-text";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 const Card = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const Card = styled.div`
   height: 800px;
   align-items: center;
   justify-content: space-around;
-  margin: 32px auto 32px auto;
+  margin: 32px auto;
 
   @media (max-width: 991px) {
     flex-direction: column;
@@ -20,8 +20,6 @@ const Card = styled.div`
 `;
 
 const CardImgContainer = styled.div`
-  width: auto;
-  height: auto;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -117,37 +115,20 @@ function StaffCard({ cardData }) {
 
   return (
     <>
-      {cardData.map((data, index) => {
+      {cardData.map((data, id) => {
         const [cardVisible, setCardVisible] = useState(false);
+        const handleCardComplete = useCallback(() => setCardVisible(true), []);
 
-        const sections = [
-          {
-            title: data.titleSection,
-            description: data.titleSectionDescription,
-          },
-          {
-            title: data.roleSectionTitle,
-            description: data.roleSectionDescription,
-          },
-          {
-            title: data.aboutSectionTitle,
-            description: data.aboutSectionDescription,
-          },
-        ];
-
-        const handleCardComplete = () => {
-          setCardVisible(true);
-        };
         return (
           <VisibilityAnimation
-            key={index}
+            key={id}
             as={Card}
             initial={"hidden"}
             animate={"visible"}
             transition={{ duration: 2, ease: "easeOut" }}
             variants={cardAnimation}
             repeat={false}
-            onAnimationComplete={handleCardComplete}
+            onAnimationComplete={handleCardComplete} //Attivazione dell'animazione del testo.
           >
             <CardImgContainer>
               <CardImgTitle>{data.coach}</CardImgTitle>
@@ -157,14 +138,28 @@ function StaffCard({ cardData }) {
               <SeparatorLine />
             </SeparatorContainer>
             <CardTextContainer>
-              {sections.map((section, i) => (
+            {/*Creazione dinamica delle sezioni testuali*/}
+              {[
+                {
+                  title: data.titleSection,
+                  description: data.titleSectionDescription,
+                },
+                {
+                  title: data.roleSectionTitle,
+                  description: data.roleSectionDescription,
+                },
+                {
+                  title: data.aboutSectionTitle,
+                  description: data.aboutSectionDescription,
+                },
+              ].map((section, i) => (
                 <TextSection
                   key={i}
                   title={section.title}
                   description={section.description}
                   index={i}
                   textAnimation={textAnimation}
-                  cardVisible={cardVisible}
+                  cardVisible={cardVisible} //Attiva l'animazione quando la card è visible.
                 />
               ))}
             </CardTextContainer>
