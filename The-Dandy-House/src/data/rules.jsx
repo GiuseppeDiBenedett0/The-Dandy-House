@@ -57,12 +57,12 @@ const RulesData = [
         transition: { delay: 1.0, duration: 0.6, ease: "easeOut" },
       },
       {
-        title: "Commitment:",
+        title: "Pet Policy:",
         description:
-          "Consistency is key. <span class='important-text'>Stick to your workout plan</span> and make fitness a part of your lifestyle.",
+          "<span class='important-text'>If bringing a pet, ensure it follows our policy</span> to maintain a safe and welcoming environment for everyone.",
         initial: { opacity: 0, x: -300 },
         animate: { opacity: 1, x: 0 },
-        transition: { delay: 1.2, duration: 0.6, ease: "easeOut" },
+        transition: { delay: 0.2, duration: 0.6, ease: "easeOut" },
       },
       {
         title: "Proper Form:",

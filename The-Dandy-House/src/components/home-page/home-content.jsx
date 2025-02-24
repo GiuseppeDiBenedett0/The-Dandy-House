@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { motion } from "framer-motion";
 import CardsComponent from "./cards-component";
 import Insertion from "./insertion-component";
 import VisibilityAnimation from "../general-components/animation/visibility-animation";
@@ -28,13 +27,12 @@ const GridContainer = styled.div`
   }
 `;
 
-const MotionCard = motion.create(CardsComponent);
-
 function HomeContent() {
   return (
     <>
       <FlexContainer>
         <GridContainer>
+          {/*Mappamento dei dati delle card e passaggio a VisibilityAnimation*/}
           {CardData.map((data, index) => {
             return (
               <VisibilityAnimation
@@ -60,6 +58,7 @@ function HomeContent() {
                 $mediaCardTextItems={data.mediaCardTextItems}
                 $cardTitleColor={data.cardTitleColor}
                 $cardPColor={data.cardPColor}
+                buttonLink={data.link}
                 $buttonBackgroundColor={data.buttonBackColor}
                 $buttonTextColor={data.buttonColor}
                 $buttonHover={data.buttonHoverColor}

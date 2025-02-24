@@ -40,7 +40,7 @@ const listVariants = {
 };
 
 function OlList({ items }) {
-  // Trova la sezione contenente la lista di regole
+  //Trova la sezione contenente la lista di regole.
   const listData = items.find((item) => item.items) || { items: [] };
 
   return (

@@ -28,7 +28,9 @@ function Insertion() {
   return (
     <>
       <InsertionContainer>
-        <InsertionImg src={Pizza} alt="Goldlewis pizza" />
+        <a href="/healthy-living/recipes">
+          <InsertionImg src={Pizza} alt="Goldlewis pizza" />
+        </a>
       </InsertionContainer>
     </>
   );

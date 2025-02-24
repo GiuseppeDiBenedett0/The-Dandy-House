@@ -12,25 +12,27 @@ const VisibilityAnimation = ({
   onAnimationComplete,
   ...props
 }) => {
+  //Ref per rilevare se l'elemento è visibile.
   const ref = useRef(null);
   const { isVisible, hasBeenVisible } = useOnScreen(ref);
+
+  //Determina lo stato dell'animazione basandosi sulla visibilità e sulla ripetizione.
+  const animationState = repeat
+    ? isVisible
+      ? animate
+      : initial
+    : hasBeenVisible
+    ? animate
+    : initial;
 
   return (
     <motion.div
       ref={ref}
       initial={initial}
-      animate={
-        repeat
-          ? isVisible
-            ? animate
-            : initial
-          : hasBeenVisible
-          ? animate
-          : initial
-      }
+      animate={animationState}
       transition={transition}
       onAnimationComplete={onAnimationComplete}
-      {...props}
+      {...props} //Passa altri props (se presenti) al div animato.
     >
       <Component {...props}>{children}</Component>
     </motion.div>

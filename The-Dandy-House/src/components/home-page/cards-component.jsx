@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import React, { forwardRef } from "react";
 import { motion } from "framer-motion";
 
@@ -30,7 +29,6 @@ const CardTextContent = styled.div`
   margin: 16px 0;
   padding: 0 24px;
   overflow-wrap: break-word;
-  word-wrap: break-word;
   color: ${({ theme }) => theme.textColors.primary};
 
   @media (max-width: 940px) {
@@ -64,14 +62,11 @@ const CardP = styled.p`
 const CardButton = styled.button`
   border-radius: 25px;
   margin: 16px 0;
-  width: 112px;
+  width: 124px;
   background-color: ${({ $buttonBackgroundColor }) =>
     $buttonBackgroundColor || "#FFFFFF"};
   color: ${({ $buttonTextColor }) => $buttonTextColor || "#000000"};
 
-  &:active,
-  &:focus,
-  &:visited,
   &:hover {
     border-color: transparent;
     background-color: ${({ $buttonHover }) => $buttonHover || "#bfbfbf"};
@@ -88,9 +83,6 @@ const CardLink = styled.a`
   font-family: ${({ theme }) => theme.fonts.oswald};
   text-decoration: none;
 
-  &:active,
-  &:focus,
-  &:visited,
   &:hover {
     color: ${({ $buttonTextColor }) => $buttonTextColor || "#000000"};
   }
@@ -118,29 +110,35 @@ const CardsComponent = forwardRef(
       button,
       image,
       alt,
+      //Props per il layout generale.
       $justifyContent,
       $cardBodyItems,
       $flexDirection,
       $background,
       $margin,
+      //Props per la versione responsive.
       $maxWidth,
       $mediaContent,
       $mediaItems,
       $mediaDirection,
+      //Props per il contenuto testuale.
       $cardTextItems,
       $textAlign,
       $mediaTextAlign,
       $mediaCardTextItems,
       $cardTitleColor,
       $cardPColor,
+      //Props per il bottone.
       $buttonBackgroundColor,
       $buttonTextColor,
       $buttonHover,
       buttonLink,
+      //Props per l'immagine.
       $width,
       $height,
       $imageMaxWidth,
       $imageWidth,
+      //Animazione per la prima card.
       $firstCard,
     },
     ref
@@ -172,13 +170,15 @@ const CardsComponent = forwardRef(
           <CardH2 $cardTitleColor={$cardTitleColor}>{title}</CardH2>
           <CardP $cardPColor={$cardPColor}>{paragraph}</CardP>
           <CardLink href={buttonLink}>
-            <CardButton
-              $buttonBackgroundColor={$buttonBackgroundColor}
-              $buttonTextColor={$buttonTextColor}
-              $buttonHover={$buttonHover}
-            >
-              {button}
-            </CardButton>
+            {button && (
+              <CardButton
+                $buttonBackgroundColor={$buttonBackgroundColor}
+                $buttonTextColor={$buttonTextColor}
+                $buttonHover={$buttonHover}
+              >
+                {button}
+              </CardButton>
+            )}
           </CardLink>
         </CardTextContent>
         <CardImgContent
