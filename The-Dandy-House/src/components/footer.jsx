@@ -120,7 +120,7 @@ const FooterLi = styled.li`
 const LiTitle = styled.h3`
   color: ${({ theme }) => theme.textColors.primary};
   font-size: 1.4rem;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   white-space: nowrap;
 `;
 
@@ -208,6 +208,8 @@ const SocialIcon = styled.img`
 `;
 
 function Footer() {
+  
+  //Dati per i link di navigazione nel footer.
   const footerLink = [
     {
       title: "Programs",

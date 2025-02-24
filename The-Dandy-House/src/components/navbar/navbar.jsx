@@ -101,15 +101,19 @@ const MenuToggle = styled(Navbar.Toggle)`
 `;
 
 function CustomNavbar() {
+  //Stato per il toggle del menu.
   const [expanded, setExpanded] = useState(false);
+  //Riferimento alla navbar per il click fuori.
   const navbarRef = useRef(null);
 
+  //Funzione per chiudere il menu quando si clicca fuori.
   const handleClickOutside = (event) => {
     if (navbarRef.current && !navbarRef.current.contains(event.target)) {
       setExpanded(false);
     }
   };
 
+  //Aggiunge e rimuovere l'event listener del click fuori.
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {

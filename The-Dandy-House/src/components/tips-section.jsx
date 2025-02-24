@@ -27,6 +27,7 @@ const Container = styled.div`
     justify-content: baseline;
     flex-direction: column;
     align-items: center;
+    padding: 8px;
   }
 `;
 
@@ -37,7 +38,7 @@ const TextContainer = styled.div`
   width: 520px;
 
   @media (max-width: 1085px) {
-    width: 50%;
+    width: 70%;
   }
 `;
 
@@ -48,7 +49,7 @@ const SectionTitle = styled.h3`
   color: #f13932;
 
   @media (max-width: 770px) {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
   }
 `;
 
@@ -61,7 +62,7 @@ const SectionParagraph = styled.p`
   margin-top: 30px;
 
   @media (max-width: 625px) {
-    font-size: 1rem;
+    font-size: 1.3rem;
     margin-top: 16px;
   }
 `;
@@ -71,8 +72,8 @@ const Image = styled.img`
   height: 300px;
 
   @media (max-width: 1085px) {
-    width: 40%;
-    height: 40%;
+    width: 50%;
+    height: 50%;
   }
 
   @media (max-width: 625px) {

@@ -47,8 +47,11 @@ const ArrowImg = styled.img`
 `;
 
 function ArrowUp() {
+
+  //Stato per determinare la visibilità del bottone.
   const [isVisible, setIsVisible] = useState(false);
 
+  //Funzione per monitorare la posizione dello scroll.
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
     if (scrollPosition > 300 && !isVisible) {
@@ -58,6 +61,7 @@ function ArrowUp() {
     }
   };
 
+    //Funzione per gestire il click e fare scroll alla parte superiore della pagina.
   const handleClick = (e) => {
     e.preventDefault();
     if ("scrollBehavior" in document.documentElement.style) {
@@ -70,6 +74,7 @@ function ArrowUp() {
     }
   };
 
+  //Aggiunge e rimuovere l'event listener per lo scroll.
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
@@ -77,6 +82,7 @@ function ArrowUp() {
     };
   }, []);
 
+  //Varianti di animazione per il bottone.
   const arrowVariants = {
     hidden: { opacity: 0, transform: "translateX(-50%) translateY(50px)" },
     visible: { opacity: 1, transform: "translateX(-50%) translateY(0)" },

@@ -113,9 +113,12 @@ const MotionDropdownMenu = styled(motion.div)`
 `;
 
 function CustomDropdown({ dropdownTitle, columns = [], linkSection, isSmall }) {
+  //Stato per il toggle della visibilità del menu.
   const [showDropdown, setShowDropdown] = useState(false);
+  //Ottieni la posizione corrente per determinare il link attivo.
   const location = useLocation();
 
+  //Verifica se il menu dovrebbe essere attivo.
   const isDropdownActive = columns.some((column) => {
     return location.pathname.includes(`${linkSection}/${column.toLowerCase()}`);
   });
