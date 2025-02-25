@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import animations from "../components/general-components/animation/tip-color-animation";
-
-const { backgroundColorAnimation, titleColorAnimation, hoverAnimations } =
-  animations;
 
 const Container = styled.div`
   display: flex;
@@ -12,16 +8,8 @@ const Container = styled.div`
   margin: 40px auto 40px auto;
   padding: 24px;
   border: 2px solid #c51400;
-  background-color: transparent;
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
   cursor: pointer;
-
-  ${({ $backgroundDark, $backgroundLight }) =>
-    backgroundColorAnimation($backgroundDark, $backgroundLight)}
-
-  ${({ $titleDark, $titleLight }) =>
-    titleColorAnimation($titleDark, $titleLight)}
-
-  ${hoverAnimations}
 
   @media (max-width: 625px) {
     justify-content: baseline;
@@ -45,6 +33,7 @@ const TextContainer = styled.div`
 const SectionTitle = styled.h3`
   font-size: 2.8rem;
   font-family: ${({ theme }) => theme.fonts.oswald};
+  color: ${({ $titleColor }) => $titleColor};
   text-transform: uppercase;
   color: #f13932;
 
@@ -88,15 +77,17 @@ function TipsSection({
   paragraph,
   image,
   imageAlt,
-  $backgroundDark,
-  $backgroundLight,
-  $titleDark,
-  $titleLight,
+  $backgroundColor,
+  $titleColor,
 }) {
+  //Stato per l'elemento audio.
   const [audioElement, setAudioElement] = useState(null);
+  //Stato per abilitare l'audio.
   const [isAudioEnable, setIsAudioEnable] = useState(false);
+  //Ottieni la location corrente dalla route.
   const location = useLocation();
 
+  //Funzione per abilitare e riprodurre l'audio al clic.
   const enableAudio = () => {
     if (!isAudioEnable && audioElement) {
       setIsAudioEnable(true);
@@ -104,22 +95,26 @@ function TipsSection({
     }
   };
 
+  //Funzione per riprodurre l'audio al passaggio del mouse.
   const handleMouseEnter = () => {
     if (isAudioEnable && audioElement) {
       audioElement.play();
     }
   };
 
+  //Funzione per mettere in pausa l'audio al termine del passaggio del mouse.
   const handleMouseLeave = () => {
     if (isAudioEnable && audioElement) {
       audioElement.pause();
     }
   };
 
+  //useEffect per caricare l'elemento audio e gestire il loop dell'audio.
   useEffect(() => {
     const newAudioElement = new Audio(audio);
     setAudioElement(newAudioElement);
 
+    //Funzione per riprodurre l'audio in loop.
     const handleAudioEnd = () => {
       newAudioElement.currentTime = 0;
       newAudioElement.play();
@@ -128,12 +123,13 @@ function TipsSection({
     newAudioElement.addEventListener("ended", handleAudioEnd);
 
     return () => {
-      newAudioElement.pause();
+      newAudioElement.pause(); //Ferma l'audio quando il componente viene smontato.
       newAudioElement.currentTime = 0;
-      newAudioElement.removeEventListener("ended", handleAudioEnd);
+      newAudioElement.removeEventListener("ended", handleAudioEnd); //Rimuovie l'evento 'ended'.
     };
   }, [audio]);
 
+  //useEffect per fermare l'audio quando la pagina cambia.
   useEffect(() => {
     if (audioElement) {
       audioElement.pause();
@@ -143,24 +139,20 @@ function TipsSection({
   }, [location.pathname, audioElement]);
 
   return (
-    <>
-      <Container
-        key={index}
-        onClick={enableAudio}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        $backgroundDark={$backgroundDark}
-        $backgroundLight={$backgroundLight}
-        $titleDark={$titleDark}
-        $titleLight={$titleLight}
-      >
-        <TextContainer>
-          <SectionTitle>{title}</SectionTitle>
-          <SectionParagraph>{paragraph}</SectionParagraph>
-        </TextContainer>
-        <Image src={image} alt={imageAlt} />
-      </Container>
-    </>
+    <Container
+      key={index}
+      onClick={enableAudio}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      $backgroundColor={$backgroundColor}
+      $titleColor={$titleColor}
+    >
+      <TextContainer>
+        <SectionTitle>{title}</SectionTitle>
+        <SectionParagraph>{paragraph}</SectionParagraph>
+      </TextContainer>
+      <Image src={image} alt={imageAlt} />
+    </Container>
   );
 }
 

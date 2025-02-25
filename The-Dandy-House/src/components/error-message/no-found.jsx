@@ -24,6 +24,7 @@ const Icon = styled.img`
   margin: 0 0 0 12px;
 `;
 
+//Componente per visualizzare un messaggio di errore.
 function NoFoundMessage() {
   return (
     <>

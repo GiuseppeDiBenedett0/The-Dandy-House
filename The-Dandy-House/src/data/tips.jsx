@@ -13,9 +13,7 @@ const TipsData = [
     imageAlt: "Slayer",
     song: HoverSong1,
     darkBackground: "#6a0dad",
-    lightBackground: "#8b2de4",
     darkTitle: "#b10b05",
-    lightTitle: "#f13932",
   },
   {
     section: "Beginner",
@@ -25,9 +23,7 @@ const TipsData = [
     imageAlt: "Faust",
     song: HoverSong2,
     darkBackground: "#0e109c",
-    lightBackground: "#2d4ee4",
     darkTitle: "#b10b05",
-    lightTitle: "#f13932",
   },
   {
     section: "Average",
@@ -37,9 +33,7 @@ const TipsData = [
     imageAlt: "Johnny",
     song: HoverSong3,
     darkBackground: "#ad750d",
-    lightBackground: "#e4aa2d",
     darkTitle: "#b10b05",
-    lightTitle: "#f13932",
   },
   {
     section: "Expert",
@@ -48,10 +42,8 @@ const TipsData = [
     image: slayerImage,
     imageAlt: "Potemkin",
     song: HoverSong4,
-    darkBackground: "#5aad0d",
-    lightBackground: "#76e42d",
+    darkBackground: "#2c520a",
     darkTitle: "#b10b05",
-    lightTitle: "#f13932",
   },
 ];
 

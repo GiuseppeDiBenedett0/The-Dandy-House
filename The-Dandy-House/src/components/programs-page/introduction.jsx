@@ -18,17 +18,18 @@ const CardContainer = styled.div`
 const CardGrid = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 60px 0 60px 0;
+  margin: 60px;
   width: 65%;
 
-  @media(max-width: 991px){
+  @media (max-width: 991px) {
     width: 100%;
-  };
+  }
 `;
 
 function Introduction() {
   const { section = "Introduction" } = useParams();
 
+  //Trova i dati della sezione corrente in TipsData.
   const tipData = TipsData.find(
     (data) => data.section.toLowerCase() === section.toLowerCase()
   );
@@ -81,9 +82,8 @@ function Introduction() {
           paragraph={tipData.paragraph}
           image={tipData.image}
           imageAlt={tipData.imageAlt}
-          $backgroundDark={tipData.darkBackground}
-          $backgroundLight={tipData.lightBackground}
-          $titleDark={tipData.darkTitle}
+          $backgroundColor={tipData.darkBackground}
+          $titleColor={tipData.darkTitle}
           $titleLight={tipData.lightTitle}
         />
       )}

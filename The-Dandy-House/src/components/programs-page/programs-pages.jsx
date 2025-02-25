@@ -39,7 +39,7 @@ const VideoWrapper = styled.div`
   }
 
   @media (max-width: 547px) {
-    width: 312px;
+    width: 350px;
   }
 `;
 
@@ -56,16 +56,20 @@ const PageParagraph = styled.p`
 `;
 
 function ProgramsPage() {
+  //Ottieni il parametro 'section' dalla URL.
   const { section } = useParams();
 
+  //Trova i dati del programma corrispondente alla sezione.
   const sectionData = ProgramsData.find(
     (data) => data.section.toLowerCase() === section.toLowerCase()
   );
 
+  //Trova i dati del tip corrispondente alla sezione.
   const tipData = TipsData.find(
     (data) => data.section.toLowerCase() === section.toLowerCase()
   );
 
+  //Visualizza un messaggio di errore se la sezione non esiste.
   if (!sectionData) {
     return (
       <AnimatedWrapper
@@ -104,10 +108,8 @@ function ProgramsPage() {
             paragraph={tipData.paragraph}
             image={tipData.image}
             imageAlt={tipData.imageAlt}
-            $backgroundDark={tipData.darkBackground}
-            $backgroundLight={tipData.lightBackground}
-            $titleDark={tipData.darkTitle}
-            $titleLight={tipData.lightTitle}
+            $backgroundColor={tipData.darkBackground}
+            $titleColor={tipData.darkTitle}
           />
         )}
       </AnimatedWrapper>

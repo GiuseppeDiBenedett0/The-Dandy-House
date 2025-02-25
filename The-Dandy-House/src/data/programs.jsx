@@ -2,7 +2,7 @@ const ProgramsData = [
   {
     section: "Beginner",
     title: "Welcome to the beginner section",
-    video: "https://www.youtube.com/embed/ppKt0PK4bFc",
+    video: "https://www.youtube.com/embed/hYDmCd2yddk",
     videoTitle: "Beginners training",
     content: [
       { type: "subtitle", content: "Beginner Workout: Simple and Motivating Fitness" },
@@ -24,7 +24,7 @@ const ProgramsData = [
   {
     section: "Average",
     title: "Welcome to the average section",
-    video: "https://www.youtube.com/embed/9u-wkk7I-3M",
+    video: "https://www.youtube.com/embed/VaFRa8_es1M",
     videoTitle: "Average training",
     content: [
       { type: "subtitle", content: "Average Workout: Building Strength and Endurance" },
@@ -46,7 +46,7 @@ const ProgramsData = [
   {
     section: "Expert",
     title: "Welcome to the expert section",
-    video: "https://www.youtube.com/embed/t3IG8qO-6MY",
+    video: "https://www.youtube.com/embed/-MXyI574Vpk",
     videoTitle: "Expert training",
     content: [
       { type: "subtitle", content: "Expert Workout: Pushing Your Limits" },
