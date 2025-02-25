@@ -121,6 +121,7 @@ function HeaderSearchComponent({
   isVisible,
   children,
 }) {
+  //Hook personalizzato per determinare se il dispositivo è mobile.
   const isMobile = useIsMobile();
 
   return (

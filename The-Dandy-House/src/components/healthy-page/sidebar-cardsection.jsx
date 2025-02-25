@@ -35,15 +35,19 @@ function CardSideNavSection({
   search,
   setSearch,
 }) {
+  //Stato per la visibilità della sidebar.
   const [isVisible, setIsVisible] = useState(false);
+  //Hook personalizzato per verificare se è su telefono.
   const isMobile = useIsMobile();
 
+  //Funzione per alternare la visibilità della sidebar.
   const toggleSidebar = () => {
     setIsVisible(!isVisible);
   };
 
   return (
     <Wrapper>
+      {/* Se la visualizzazione è su mobile */}
       {isMobile && (
         <>
           <HeaderSearchContainer>
@@ -77,6 +81,8 @@ function CardSideNavSection({
           </CardSection>
         </>
       )}
+
+      {/* Se la visualizzazione non è mobile */}
       {!isMobile && (
         <>
           <HeaderSearchContainer>

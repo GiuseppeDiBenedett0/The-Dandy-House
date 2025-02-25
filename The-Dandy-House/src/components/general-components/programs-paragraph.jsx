@@ -21,6 +21,7 @@ const Paragraph = styled.p`
 function ProgramsParagraph({ paragraph }) {
   return (
     <>
+      {/*Il paragrafo viene analizzato come HTML e reso nel componente Paragraph.*/}
       <Paragraph>{parse(paragraph)}</Paragraph>
     </>
   );

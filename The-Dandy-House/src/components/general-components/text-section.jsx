@@ -69,6 +69,7 @@ const Link = styled.a`
 function TextSection({ content }) {
   return (
     <>
+      {/* Mappatura delle sezioni di contenuto. */}
       {content.map((section, index) => {
         if (section.type === "title") {
           return <CustomTitle key={index}>{section.content}</CustomTitle>;
@@ -107,10 +108,10 @@ function TextSection({ content }) {
           );
         }
 
+        //Ritorna null se il tipo di sezione non è riconosciuto.
         return null;
       })}
     </>
   );
 }
-
 export default TextSection;

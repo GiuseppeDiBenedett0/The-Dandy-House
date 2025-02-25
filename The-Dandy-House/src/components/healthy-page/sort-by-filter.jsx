@@ -75,6 +75,7 @@ const CustomDropdownItems = styled(Dropdown.Item)`
 `;
 
 function SortByFilter({ onSortChange }) {
+  //Stato per tenere traccia dell'elemento attivo.
   const [isActive, setIsActive] = useState("newest");
   return (
     <>

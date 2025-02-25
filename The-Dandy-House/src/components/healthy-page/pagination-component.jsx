@@ -32,16 +32,18 @@ const CustomPagination = styled(Pagination)`
 `;
 
 function PaginationComponent({ currentPage, totalPages, onPageChange }) {
+  //Se non ci sono pagine, non mostrare nulla.
   if (totalPages === 0) return null;
 
   const paginationItems = [];
 
+  //Genera gli elementi di paginazione.
   for (let page = 1; page <= totalPages; page++) {
     paginationItems.push(
       <Pagination.Item
         key={page}
-        active={page === currentPage}
-        onClick={() => onPageChange(page)}
+        active={page === currentPage} //Imposta come attivo l'elemento della pagina corrente.
+        onClick={() => onPageChange(page)} //Gestisce il clic per cambiare pagina.
       >
         {page}
       </Pagination.Item>

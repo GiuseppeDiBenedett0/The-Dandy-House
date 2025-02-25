@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import TextSection from "../general-components/text-section";
+import NoFoundMessage from "../error-message/no-found";
 
 const Container = styled.div`
   margin-top: 100px;
@@ -23,21 +24,20 @@ const Image = styled.img`
 `;
 
 function CardPage({ cardData, pageData }) {
+  //Estrae i parametri dalla URL per ottenere l'ID dell'articolo o della ricetta.
   const { articleId, recipeId } = useParams();
-
+  //Determina l'ID (articolo o ricetta).
   const id = parseInt(articleId || recipeId);
 
+  //Trova il dato corrispondente all'ID.
   const card = cardData.find((card) => card.id === id);
   const page = pageData.find((page) => page.id === id);
 
-  console.log("ID ricevuto:", id);
-  console.log("CardData:", cardData);
-  console.log("PageData:", pageData);
-
+  //Se non viene trovato il dato corrispondente, mostra un messaggio di errore.
   if (!card) {
     return (
       <>
-        <p>pagina non trovata</p>
+        <NoFoundMessage />
       </>
     );
   }

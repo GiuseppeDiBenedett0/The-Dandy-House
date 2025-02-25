@@ -70,8 +70,10 @@ const CustomDropdownItems = styled(Dropdown.Item)`
   }
 `;
 function FilterComponent({ sectionName, items = [""], onClick }) {
+  //Stato per tracciare l'elemento selezionato.
   const [selectedItem, setSelectedItem] = useState(null);
 
+  //Impostazione iniziale dell'elemento selezionato.
   useEffect(() => {
     if (!selectedItem && items.includes("All Authors")) {
       setSelectedItem("All Authors");
@@ -80,8 +82,11 @@ function FilterComponent({ sectionName, items = [""], onClick }) {
     }
   }, [items, selectedItem]);
 
+  //Funzione per gestire il clic su un item.
   const handleItemClick = (item) => {
+    //Aggiorna lo stato con l'item selezionato.
     setSelectedItem(item);
+     //Chiama la funzione onClick passata come props.
     onClick(item);
   };
 

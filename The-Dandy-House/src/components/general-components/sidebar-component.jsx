@@ -66,13 +66,16 @@ function SidebarComponent({
   handleFilterCategory,
   onSortChange,
 }) {
-  const isMobile = useIsMobile();
+  //Hook personalizzato per rilevare dispositivi mobili.
+  const isMobile = useIsMobile(); 
 
+  // arianti per l'animazione della sidebar in desktop.
   const sidebarVariants = {
     visible: { width: "280px", opacity: 1 },
     hidden: { width: "0px", opacity: 0 },
   };
 
+  //Varianti per l'animazione della sidebar in mobile.
   const mobileSidebarVariants = {
     visible: { height: "auto", opacity: 1 },
     hidden: { height: "0px", opacity: 0 },

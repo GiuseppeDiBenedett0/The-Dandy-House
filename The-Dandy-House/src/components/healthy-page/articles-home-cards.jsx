@@ -85,70 +85,81 @@ const InfoText = styled.span`
 `;
 
 function ArticlesCardsSection({ articleData, section }) {
-  const [filters, setFilters] = useState({
-    sortOrder: "newest",
-    filterAuth: "",
-    filterCategory: "",
-    searchTerm: "",
-  });
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
-
-  const sectionRef = useRef(null);
-
-  const filteredAndSortedArticles = useFilteredArticles(articleData, filters);
-
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentArticles = filteredAndSortedArticles.slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
-
-  const totalPages = Math.ceil(filteredAndSortedArticles.length / itemsPerPage);
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-    if (sectionRef.current) {
-      const offset = 50;
-      const topPosition =
-        sectionRef.current.getBoundingClientRect().top +
-        window.scrollY -
-        offset;
-
-      window.scrollTo({
-        top: topPosition,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const availableAuthors = [
-    ...new Set(
-      articleData
-        .filter(
-          (article) =>
-            filters.filterCategory === "" ||
-            article.category === filters.filterCategory
-        )
-        .map((article) => article.author)
-    ),
-  ];
-
-  const availableCategories = [
-    ...new Set(
-      articleData
-        .filter(
-          (article) =>
-            filters.filterAuth === "" || article.author === filters.filterAuth
-        )
-        .map((article) => article.category)
-    ),
-  ];
-
-  const handleFilterChange = (key, value) => {
-    setFilters((prev) => ({ ...prev, [key]: value }));
-    setCurrentPage(1);
-  };
+    //Stato per i filtri.
+    const [filters, setFilters] = useState({
+      sortOrder: "newest",
+      filterAuth: "",
+      filterCategory: "",
+      searchTerm: "",
+    });
+    //Stato per la pagina corrente.
+    const [currentPage, setCurrentPage] = useState(1);
+    //Items massimi per pagina.
+    const itemsPerPage = 6;
+  
+    //Riferimento per la sezione.
+    const sectionRef = useRef(null);
+  
+    //Articoli filtrati e ordinati.
+    const filteredAndSortedArticles = useFilteredArticles(articleData, filters);
+  
+    //Indici per la paginazione.
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const currentArticles = filteredAndSortedArticles.slice(
+      startIndex,
+      startIndex + itemsPerPage
+    );
+  
+    //Calcolo delle pagine totali.
+    const totalPages = Math.ceil(filteredAndSortedArticles.length / itemsPerPage);
+  
+    //Funzione per il cambiamento di pagina.
+    const handlePageChange = (page) => {
+      setCurrentPage(page);
+      if (sectionRef.current) {
+        const offset = 50;
+        const topPosition =
+          sectionRef.current.getBoundingClientRect().top +
+          window.scrollY -
+          offset;
+  
+        window.scrollTo({
+          top: topPosition,
+          behavior: "smooth",
+        });
+      }
+    };
+  
+    //Autori disponibili per il filtro.
+    const availableAuthors = [
+      ...new Set(
+        articleData
+          .filter(
+            (article) =>
+              filters.filterCategory === "" ||
+              article.category === filters.filterCategory
+          )
+          .map((article) => article.author)
+      ),
+    ];
+  
+    //Categorie disponibili per il filtro.
+    const availableCategories = [
+      ...new Set(
+        articleData
+          .filter(
+            (article) =>
+              filters.filterAuth === "" || article.author === filters.filterAuth
+          )
+          .map((article) => article.category)
+      ),
+    ];
+  
+    //Funzione per aggiornare i filtri.
+    const handleFilterChange = (key, value) => {
+      setFilters((prev) => ({ ...prev, [key]: value }));
+      setCurrentPage(1);
+    };
 
   return (
     <>
