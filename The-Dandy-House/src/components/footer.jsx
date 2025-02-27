@@ -208,7 +208,6 @@ const SocialIcon = styled.img`
 `;
 
 function Footer() {
-  
   //Dati per i link di navigazione nel footer.
   const footerLink = [
     {
@@ -247,7 +246,9 @@ function Footer() {
                     {data.links.map((link, linkIndex) => (
                       <LiLink
                         key={linkIndex}
-                        href={`/${data.section.toLowerCase()}/${link.toLowerCase().replace(/\s+/g, "-")}`}
+                        href={`/${data.section.toLowerCase()}/${link
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}`}
                       >
                         {link}
                       </LiLink>
@@ -260,7 +261,8 @@ function Footer() {
           <FooterEnd>
             <FooterCredits>
               Copyright © 2024 The Dandy Step. This website is create by
-              Giuseppe Di Benedetto.{" "}
+              Giuseppe Di Benedetto. The songs used and many images are the
+              property of Arc System Works.{" "}
               <CreditsLink href="/">Terms of Use</CreditsLink>{" "}
               <CreditsLink href="/">Privacy Policy</CreditsLink>{" "}
               <CreditsLink href="/">Cookie Preferences</CreditsLink>
