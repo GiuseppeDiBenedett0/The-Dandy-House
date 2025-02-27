@@ -10,8 +10,8 @@ const Wrapper = styled(motion.div)`
   align-items: ${({ $alignItems }) => $alignItems};
   justify-content: ${({ $justifyContent }) => $justifyContent};
 
-  @media(max-width: 450px) {
-    width: 90%;;
+  @media (max-width: 450px) {
+    width: 90%;
   }
 `;
 
@@ -22,6 +22,7 @@ function AnimatedWrapper({
   $alignItems,
   $justifyContent,
 }) {
+  //Varianti di animazione per il wrapper.
   const pageAnimation = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },

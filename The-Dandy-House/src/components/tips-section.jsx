@@ -57,16 +57,18 @@ const SectionParagraph = styled.p`
 `;
 
 const Image = styled.img`
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 335px;
 
   @media (max-width: 1085px) {
+    margin: 16px 0 0 0;
     width: 50%;
     height: 50%;
   }
 
   @media (max-width: 625px) {
-    margin: 16px 0 0 0;
+    width: 100%;
+    height: 100%;
   }
 `;
 

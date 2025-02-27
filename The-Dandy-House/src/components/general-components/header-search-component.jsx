@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import SortByFilter from "../healthy-page/sort-by-filter";
 import useIsMobile from "../hooks/is-mobile-hook";
@@ -150,7 +149,7 @@ function HeaderSearchComponent({
           <>
             <SideBarHeader>
               <HeaderTitle>Our Articles</HeaderTitle>
-              <FilterButton variant="light" onClick={toggleSidebar}>
+              <FilterButton $variant="light" onClick={toggleSidebar}>
                 <img
                   src={isVisible ? filterIconOn : filterIconOff}
                   alt="Filter Icon"

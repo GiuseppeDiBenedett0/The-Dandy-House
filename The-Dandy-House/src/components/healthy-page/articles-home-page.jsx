@@ -1,6 +1,6 @@
 import AnimatedWrapper from "../general-components/animation/animated-wrapper";
 import TextSection from "../general-components/text-section";
-import ArticlesCardsSection from "./articles-home-cards";
+import ArticlesCardsSection from "./articles-recipes-home-cards";
 import ArticlesHomeData from "../../data/articles-home";
 import ArticlesCardsData from "../../data/articles-cards";
 

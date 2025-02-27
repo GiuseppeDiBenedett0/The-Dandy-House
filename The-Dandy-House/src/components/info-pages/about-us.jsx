@@ -81,6 +81,7 @@ const DropdownButton = styled.button`
   border-radius: 15px;
   background-color: ${({ theme }) => theme.primaryButtons.activeBackground};
   font-family: ${({ theme }) => theme.fonts.oswald};
+  color: ${({ theme }) => theme.textColors.tertiary};
   font-size: 1.5rem;
   text-transform: uppercase;
 

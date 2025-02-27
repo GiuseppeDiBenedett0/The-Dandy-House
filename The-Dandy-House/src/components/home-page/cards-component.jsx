@@ -74,7 +74,7 @@ const CardButton = styled.button`
 
   @media (max-width: 445px) {
     font-size: 0.9rem;
-    width: 90px;
+    width: 100px;
   }
 `;
 

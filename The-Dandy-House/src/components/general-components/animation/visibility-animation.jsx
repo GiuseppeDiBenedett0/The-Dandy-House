@@ -10,6 +10,7 @@ const VisibilityAnimation = ({
   transition = { duration: 0.5 },
   repeat = true,
   onAnimationComplete,
+  variants,
   ...props
 }) => {
   //Ref per rilevare se l'elemento è visibile.
@@ -25,6 +26,12 @@ const VisibilityAnimation = ({
     ? animate
     : initial;
 
+  //Filtro delle varianti se necessarie.
+  const filteredProps = { ...props };
+  if (variants) {
+    delete filteredProps.variants;
+  }
+
   return (
     <motion.div
       ref={ref}
@@ -32,9 +39,9 @@ const VisibilityAnimation = ({
       animate={animationState}
       transition={transition}
       onAnimationComplete={onAnimationComplete}
-      {...props} //Passa altri props (se presenti) al div animato.
+      {...filteredProps}
     >
-      <Component {...props}>{children}</Component>
+      <Component {...filteredProps}>{children}</Component>
     </motion.div>
   );
 };

@@ -8,7 +8,7 @@ import ArrowUp from "./components/navbar/arrow-up";
 import Footer from "./components/footer";
 import ProgramsPage from "./components/programs-page/programs-pages";
 import ArticlesHomePage from "./components/healthy-page/articles-home-page";
-import RecipesHomePage from "./components/healthy-page/repices-home-page";
+import RecipesHomePage from "./components/healthy-page/recipes-home-page";
 import CardPage from "./components/healthy-page/card-page";
 import ArticlesCardsData from "./data/articles-cards";
 import ArticlesPagesData from "./data/Articles-pages";

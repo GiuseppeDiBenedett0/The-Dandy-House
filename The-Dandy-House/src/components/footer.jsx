@@ -267,16 +267,16 @@ function Footer() {
             </FooterCredits>
             <FooterSocialUl>
               <FooterSocialLi>
-                <a href="">
+                <a href="https://www.youtube.com/watch?v=c5EevDyeQUE">
                   <SocialIcon src={XIcon} alt="X" />
                 </a>
-                <a href="">
+                <a href="https://www.youtube.com/watch?v=c5EevDyeQUE">
                   <SocialIcon src={FacebookIcon} alt="Facebook" />
                 </a>
-                <a href="">
+                <a href="https://www.youtube.com/watch?v=c5EevDyeQUE">
                   <SocialIcon src={InstagramIcon} alt="Instagram" />
                 </a>
-                <a href="">
+                <a href="https://www.youtube.com/watch?v=c5EevDyeQUE">
                   <SocialIcon
                     src={YoutubeIcon}
                     alt="Youtube"

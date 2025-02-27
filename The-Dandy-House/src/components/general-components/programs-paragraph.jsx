@@ -6,7 +6,7 @@ const Paragraph = styled.p`
   font-family: ${({ theme }) => theme.fonts.oswald};
   color: ${({ theme }) => theme.textColors.primary};
   text-align: left;
-  line-height: 1.7;
+  line-height: ${({ $lineHeight }) => $lineHeight || 1.7};
 
   .bold {
     color: ${({ theme }) => theme.textColors.secondary};
@@ -18,11 +18,11 @@ const Paragraph = styled.p`
   }
 `;
 
-function ProgramsParagraph({ paragraph }) {
+function ProgramsParagraph({ paragraph, lineHeight }) {
   return (
     <>
       {/*Il paragrafo viene analizzato come HTML e reso nel componente Paragraph.*/}
-      <Paragraph>{parse(paragraph)}</Paragraph>
+      <Paragraph $lineHeight={lineHeight}>{parse(paragraph)}</Paragraph>
     </>
   );
 }

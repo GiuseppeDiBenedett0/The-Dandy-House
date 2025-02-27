@@ -66,7 +66,7 @@ const Link = styled.a`
   }
 `;
 
-function TextSection({ content }) {
+function TextSection({ content, paragraphLineHeight }) {
   return (
     <>
       {/* Mappatura delle sezioni di contenuto. */}
@@ -78,7 +78,7 @@ function TextSection({ content }) {
           return <CustomSubTitle key={index}>{section.content}</CustomSubTitle>;
         }
         if (section.type === "paragraph") {
-          return <ProgramsParagraph key={index} paragraph={section.content} />;
+          return <ProgramsParagraph $lineHeight={paragraphLineHeight} key={index} paragraph={section.content} />;
         }
         if (section.type === "list") {
           return (

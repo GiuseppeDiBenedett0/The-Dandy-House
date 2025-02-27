@@ -1,17 +1,14 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import TextSection from "../general-components/text-section";
+import AnimatedWrapper from "../general-components/animation/animated-wrapper";
 import NoFoundMessage from "../error-message/no-found";
-
-const Container = styled.div`
-  margin-top: 100px;
-`;
 
 const CustomTitle = styled.h1`
   font-size: 3rem;
   font-family: ${({ theme }) => theme.fonts.oswald};
   color: ${({ theme }) => theme.textColors.secondary};
-  margin-bottom: 50px;
+  margin-bottom: 24px;
 
   @media (max-width: 547px) {
     font-size: 2.2rem;
@@ -21,6 +18,12 @@ const CustomTitle = styled.h1`
 const Image = styled.img`
   width: 500px;
   height: 500px;
+  margin: 24px 0;
+
+  @media (max-width: 675px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 function CardPage({ cardData, pageData }) {
@@ -42,13 +45,17 @@ function CardPage({ cardData, pageData }) {
     );
   }
 
+  if (!page) {
+    return <NoFoundMessage />;
+  }
+
   return (
     <>
-      <Container>
+      <AnimatedWrapper>
         <CustomTitle>{card.title}</CustomTitle>
         <Image src={card.image} alt={card.alt} />
-        <TextSection content={page.pageText} />
-      </Container>
+        <TextSection paragraphLineHeight={2.1} content={page.pageText} />
+      </AnimatedWrapper>
     </>
   );
 }

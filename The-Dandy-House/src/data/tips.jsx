@@ -1,4 +1,7 @@
-import slayerImage from "../assets/196px-GGST_Slayer_jS.png";
+import slayerImage from "../assets/Slayer-run.png";
+import faustEat from "../assets/Faust_Ground_Throw.png";
+import johnnyPunch from "../assets/Johnny-punch.png";
+import Hug from "../assets/hug.png";
 import HoverSong1 from "../assets/Ups and Downs [With Lyrics] (Slayer Theme) - Guilty Gear Strive OST.mp3";
 import HoverSong2 from "../assets/Alone Infection [With Lyrics] (Faust Theme) - Guilty Gear Strive OST.mp3";
 import HoverSong3 from "../assets/Just Lean [With Lyrics] (Johnny Theme) - Guilty Gear Strive OST.mp3";
@@ -18,8 +21,8 @@ const TipsData = [
   {
     section: "Beginner",
     title: "Faust daily tip",
-    paragraph: `Use Pilebunker to deafet your enemies and claim the victory.`,
-    image: slayerImage,
+    paragraph: `Eat light to keep yourself always active.`,
+    image: faustEat,
     imageAlt: "Faust",
     song: HoverSong2,
     darkBackground: "#0e109c",
@@ -28,8 +31,8 @@ const TipsData = [
   {
     section: "Average",
     title: "Johnny daily tip",
-    paragraph: `Use Pilebunker to deafet your enemies and claim the victory.`,
-    image: slayerImage,
+    paragraph: `This fine big man never misses the target.`,
+    image: johnnyPunch,
     imageAlt: "Johnny",
     song: HoverSong3,
     darkBackground: "#ad750d",
@@ -38,8 +41,8 @@ const TipsData = [
   {
     section: "Expert",
     title: "Potemkin daily tip",
-    paragraph: `Use Pilebunker to deafet your enemies and claim the victory.`,
-    image: slayerImage,
+    paragraph: `Love yourself first, then love others.`,
+    image: Hug,
     imageAlt: "Potemkin",
     song: HoverSong4,
     darkBackground: "#2c520a",

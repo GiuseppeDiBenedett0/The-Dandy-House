@@ -14,6 +14,7 @@ const ScrollContainer = styled.div`
 `;
 
 const CardLink = styled(Link)`
+  display: contents;
   color: inherit;
   text-decoration: none;
 `;
@@ -22,7 +23,9 @@ const CustomCard = styled(Card)`
   width: 18rem;
   background-color: #f3f3f3;
   border: 1px solid #c51400;
+  border-radius: 0;
   transition: transform 0.2s ease-in-out;
+  margin: 8px;
 
   &:hover {
     transform: scale(1.05);
@@ -31,6 +34,7 @@ const CustomCard = styled(Card)`
 
   @media (max-width: 755px) {
     width: 90%;
+    margin: 16px 0;
   }
 `;
 
@@ -45,7 +49,6 @@ const CustomCardTitle = styled(Card.Title)`
   text-transform: uppercase;
   color: ${({ theme }) => theme.textColors.secondary};
   border-bottom: 1px solid #c51400;
-  border-radius: 5px;
   margin-bottom: 16px;
 `;
 
@@ -56,6 +59,9 @@ const CustomCardImage = styled(Card.Img)`
 `;
 
 const CustomCardBody = styled(Card.Body)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: #070707;
 `;
 
@@ -85,87 +91,87 @@ const InfoText = styled.span`
 `;
 
 function ArticlesCardsSection({ articleData, section }) {
-    //Stato per i filtri.
-    const [filters, setFilters] = useState({
-      sortOrder: "newest",
-      filterAuth: "",
-      filterCategory: "",
-      searchTerm: "",
-    });
-    //Stato per la pagina corrente.
-    const [currentPage, setCurrentPage] = useState(1);
-    //Items massimi per pagina.
-    const itemsPerPage = 6;
-  
-    //Riferimento per la sezione.
-    const sectionRef = useRef(null);
-  
-    //Articoli filtrati e ordinati.
-    const filteredAndSortedArticles = useFilteredArticles(articleData, filters);
-  
-    //Indici per la paginazione.
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const currentArticles = filteredAndSortedArticles.slice(
-      startIndex,
-      startIndex + itemsPerPage
-    );
-  
-    //Calcolo delle pagine totali.
-    const totalPages = Math.ceil(filteredAndSortedArticles.length / itemsPerPage);
-  
-    //Funzione per il cambiamento di pagina.
-    const handlePageChange = (page) => {
-      setCurrentPage(page);
-      if (sectionRef.current) {
-        const offset = 50;
-        const topPosition =
-          sectionRef.current.getBoundingClientRect().top +
-          window.scrollY -
-          offset;
-  
-        window.scrollTo({
-          top: topPosition,
-          behavior: "smooth",
-        });
-      }
-    };
-  
-    //Autori disponibili per il filtro.
-    const availableAuthors = [
-      ...new Set(
-        articleData
-          .filter(
-            (article) =>
-              filters.filterCategory === "" ||
-              article.category === filters.filterCategory
-          )
-          .map((article) => article.author)
-      ),
-    ];
-  
-    //Categorie disponibili per il filtro.
-    const availableCategories = [
-      ...new Set(
-        articleData
-          .filter(
-            (article) =>
-              filters.filterAuth === "" || article.author === filters.filterAuth
-          )
-          .map((article) => article.category)
-      ),
-    ];
-  
-    //Funzione per aggiornare i filtri.
-    const handleFilterChange = (key, value) => {
-      setFilters((prev) => ({ ...prev, [key]: value }));
-      setCurrentPage(1);
-    };
+  //Stato per i filtri.
+  const [filters, setFilters] = useState({
+    sortOrder: "newest",
+    filterAuth: "",
+    filterCategory: "",
+    searchTerm: "",
+  });
+  //Stato per la pagina corrente.
+  const [currentPage, setCurrentPage] = useState(1);
+  //Items massimi per pagina.
+  const itemsPerPage = 6;
+
+  //Riferimento per la sezione.
+  const sectionRef = useRef(null);
+
+  //Articoli filtrati e ordinati.
+  const filteredAndSortedArticles = useFilteredArticles(articleData, filters);
+
+  //Indici per la paginazione.
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentArticles = filteredAndSortedArticles.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  //Calcolo delle pagine totali.
+  const totalPages = Math.ceil(filteredAndSortedArticles.length / itemsPerPage);
+
+  //Funzione per il cambiamento di pagina.
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    if (sectionRef.current) {
+      const offset = 50;
+      const topPosition =
+        sectionRef.current.getBoundingClientRect().top +
+        window.scrollY -
+        offset;
+
+      window.scrollTo({
+        top: topPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  //Autori disponibili per il filtro.
+  const availableAuthors = [
+    ...new Set(
+      articleData
+        .filter(
+          (article) =>
+            filters.filterCategory === "" ||
+            article.category === filters.filterCategory
+        )
+        .map((article) => article.author)
+    ),
+  ];
+
+  //Categorie disponibili per il filtro.
+  const availableCategories = [
+    ...new Set(
+      articleData
+        .filter(
+          (article) =>
+            filters.filterAuth === "" || article.author === filters.filterAuth
+        )
+        .map((article) => article.category)
+    ),
+  ];
+
+  //Funzione per aggiornare i filtri.
+  const handleFilterChange = (key, value) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
+    setCurrentPage(1);
+  };
 
   return (
     <>
       <ScrollContainer ref={sectionRef}>
         <CardSideNavSection
-          resultsNumber={filteredAndSortedArticles.length}
+          resultsNumber={filteredAndSortedArticles.length || []}
           onSortChange={(order) => handleFilterChange("sortOrder", order)}
           onFilteredAuth={(author) => handleFilterChange("filterAuth", author)}
           onFilteredCategory={(category) =>
@@ -181,8 +187,8 @@ function ArticlesCardsSection({ articleData, section }) {
                 <NoFoundMessage />
               ) : (
                 currentArticles.map((data, index) => (
-                  <CardLink to={`/healthy-living/${section}/${data.id}`}>
-                    <CustomCard key={index}>
+                  <CardLink key={index} to={`/healthy-living/${section}/${data.id}`}>
+                    <CustomCard>
                       <CustomCardTitle>{data.title}</CustomCardTitle>
                       <CustomCardImage
                         variant="top"
